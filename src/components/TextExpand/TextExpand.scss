@@ -1,0 +1,23 @@
+.expandable-cell {
+    position: relative;
+    height: auto;
+    .text-content {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 2em; /* Adjust this to your preferred height */
+        transition: max-height 0.3s ease;
+    }
+
+    .text-content.expanded {
+        max-height: none;
+    }
+
+    .show-more-button {
+        background: none;
+        border: none;
+        color: blue;
+        cursor: pointer;
+        padding: 0;
+    }
+}

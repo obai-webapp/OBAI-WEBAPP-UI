@@ -1,0 +1,22 @@
+//overirdden default bootstrap toggler styles
+.dropdown-toggle {
+    background-color: transparent;
+    border: 0px;
+    &:focus,
+    &:hover,
+    &:after {
+        color: inherit;
+        border: 0px;
+        background-color: transparent;
+        display: none;
+    }
+}
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+    color: inherit;
+    background-color: transparent;
+    border-color: transparent;
+}

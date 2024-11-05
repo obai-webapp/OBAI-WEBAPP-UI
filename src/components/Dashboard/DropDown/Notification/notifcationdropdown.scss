@@ -1,0 +1,33 @@
+@import '@constants/colors.scss';
+@import '@constants/typography.scss';
+@import '@constants/bootstrap-overrides.scss';
+
+.notification-dropdown {
+    button {
+        cursor: pointer;
+        font-size: 20px;
+        color: $text-color;
+        position: relative;
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: $info-color;
+            position: absolute;
+            top: 2px;
+            left: 8px;
+        }
+    }
+    #notifications-dropdown-menu {
+        width: 300px !important;
+        box-shadow: 2px 1px 3px rgba(0, 0, 2, 0.057);
+        .dropdown-item {
+            font-family: $font-primary;
+            padding: 10px 15px;
+            color: $info-color;
+        }
+        .seen {
+            color: $input-placeholder-color !important;
+        }
+    }
+}

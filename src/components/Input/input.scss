@@ -1,0 +1,88 @@
+@import '@constants/colors.scss';
+@import '@constants/typography.scss';
+@import '@constants/media.scss';
+
+.form-inline {
+    label {
+        display: inline-block !important;
+    }
+}
+.formgroup {
+    position: relative;
+    width: 100%;
+    label {
+        display: block;
+        font-family: $font-primary;
+        margin-bottom: 2px;
+        font-size: 16px;
+        text-transform: capitalize;
+        //handle responsive
+        @include respond-to($small-screen) {
+            font-size: 14px;
+        }
+    }
+    // input type text and password default styles. Please feel free to customize as required
+    input[type='text'],
+    input[type='password'],
+    textarea,
+    .custom_select__control {
+        font-size: 16px;
+        font-family: $font-secondary;
+        border-radius: 5px;
+        padding: 6px 7px;
+        border: 1px solid $primary-color;
+        background-color: $light-color;
+        color: $info-color;
+        border-color: $info-color;
+        &::placeholder {
+            text-transform: capitalize;
+            font-size: 14px;
+        }
+        &:focus {
+            outline: 1.5px solid $info-color;
+        }
+
+        //handle responsive
+        @include respond-to($small-screen) {
+            width: 320px;
+            padding: 4px 5px;
+            font-size: 14px;
+        }
+        @include respond-to($x-small-screen) {
+            width: 100%;
+            padding: 4px 5px;
+            font-size: 14px;
+        }
+    }
+    //use react select class prefix to select required elements within selector element
+    .custom_select__control {
+        padding: 0px;
+        font-size: 16px;
+        color: $info-color !important;
+        &:hover {
+            border-color: $info-color;
+        }
+    }
+    // form control radio default styles
+    .check-control {
+        display: inline-block !important;
+        margin-right: 10px;
+        input {
+            margin-right: 5px;
+        }
+    }
+    // validation error message style
+    .validation-error {
+        font-family: $font-secondary;
+        color: $danger-color;
+        font-size: 12px;
+        margin-top: 5px;
+        position: absolute;
+        bottom: -20px;
+        left: 0px;
+        //handle responsive
+        @include respond-to($small-screen) {
+            font-size: 12px;
+        }
+    }
+}

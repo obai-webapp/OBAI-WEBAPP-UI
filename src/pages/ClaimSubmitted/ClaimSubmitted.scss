@@ -1,0 +1,251 @@
+@import '@constants/colors.scss';
+
+.claim-submit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .for-width {
+        width: 26%;
+
+        h4 {
+            font-size: 40px;
+            color: $primary-color;
+            text-align: center;
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+
+            @media screen and (max-width: 576px) {
+                text-align: left;
+            }
+        }
+
+        .ai-img {
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 271px;
+                height: 234px;
+                object-fit: cover;
+                border-radius: 14px;
+                border: 1px solid $dark-color; // Using brand color instead of hardcoded color
+
+                @media screen and (max-width: 576px) {
+                    height: auto;
+                }
+            }
+        }
+
+        p {
+            color: $primary-color;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .non-active-col {
+            background: #f9f9ff;
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 18px;
+            border: 1px solid #f9f9ff;
+
+            .form-check-input:checked {
+                --bs-form-check-bg-image: url('@icons/check.svg') !important;
+                border-color: rgba(16, 28, 133, 0.5); // Using brand color
+                cursor: pointer;
+            }
+
+            .form-check-input:checked[type='radio'] {
+                --bs-form-check-bg-image: none;
+            }
+
+            .form-check-input:focus {
+                box-shadow: none;
+            }
+
+            .form-check-input {
+                cursor: pointer;
+            }
+
+            h5 {
+                color: $dark-color; // Using brand color
+                font-family: 'Lato', sans-serif;
+                font-weight: 700;
+                opacity: 0.7;
+                font-size: 16px;
+                margin: 0;
+            }
+
+            p {
+                color: $dark-color; // Using brand color
+                font-family: 'Lato', sans-serif;
+                font-weight: 400;
+                opacity: 0.8;
+                font-size: 13px;
+                margin: 0;
+            }
+        }
+
+        .active-col {
+            background: #f9f9ff;
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 18px;
+            border: 1px solid $dark-color; // Using brand color
+
+            .form-check-input:checked {
+                --bs-form-check-bg-image: url('@icons/check.svg') !important;
+                border-color: rgba(16, 28, 133, 0.5); // Using brand color
+            }
+
+            .form-check-input:checked[type='radio'] {
+                --bs-form-check-bg-image: none;
+            }
+
+            .form-check-input:focus {
+                box-shadow: none;
+            }
+
+            h5 {
+                color: $dark-color; // Using brand color
+                font-family: 'Lato', sans-serif;
+                font-weight: 700;
+                font-size: 16px;
+                margin: 0;
+            }
+
+            p {
+                color: $dark-color; // Using brand color
+                font-family: 'Lato', sans-serif;
+                font-weight: 400;
+                opacity: 0.8;
+                font-size: 13px;
+                margin: 0;
+            }
+        }
+
+        .for-radio-active {
+            h4 {
+                font-size: 20px;
+                color: $primary-color;
+                text-align: center;
+                font-family: 'Lato', sans-serif;
+                font-weight: 900;
+            }
+
+            p {
+                font-size: 20px;
+                opacity: 0.7;
+                text-align: left;
+            }
+        }
+
+        .double-check {
+            background: linear-gradient(to bottom, rgba(249, 249, 255, 1), rgba(225, 227, 251, 1));
+            padding: 14px 38px;
+            box-shadow: 18px 9px 26px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+
+            h4 {
+                font-size: 20px;
+                color: $primary-color;
+                text-align: center;
+                font-family: 'Lato', sans-serif;
+                font-weight: 900;
+            }
+
+            p {
+                color: $primary-color;
+                font-size: 18px;
+                text-align: center;
+                font-family: 'Lato', sans-serif;
+                font-weight: 400;
+                opacity: 0.7;
+            }
+        }
+
+        .table-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 8px;
+            padding: 16px 0;
+            box-shadow: -1px 1px 15px 3px #bbc8e6;
+            background-image: linear-gradient(to bottom, rgba(249, 249, 255, 1), rgba(225, 227, 251, 1));
+
+            h4 {
+                font-size: 28px;
+                color: $primary-color;
+                text-align: center;
+                font-family: 'Lato', sans-serif;
+                font-weight: 900;
+            }
+
+            .table {
+                display: flex;
+                justify-content: center;
+
+                table {
+                    th {
+                        padding: 20px;
+                        padding-bottom: 0;
+                        color: $brand-secondary-color; // Using secondary brand color
+                        font-family: 'Lato', sans-serif;
+                        font-weight: 600;
+
+                        @media screen and (max-width: 576px) {
+                            padding: 20px 12px;
+                            padding-bottom: 0;
+                        }
+                    }
+
+                    tr {
+                        background-color: transparent;
+                        padding: 4px 20px;
+                        border-bottom: 1px solid #beb4b4; /* Add border for all rows */
+                    }
+
+                    tr:last-child {
+                        border-bottom: none; /* Remove border for the last row */
+                    }
+
+                    td {
+                        padding: 4px 20px;
+                        color: $dark-color; // Using brand color
+                        font-family: 'Lato', sans-serif;
+
+                        @media screen and (max-width: 576px) {
+                            padding: 4px 12px;
+                            padding-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Responsive design for different screen sizes
+        @media screen and (max-width: 576px) {
+            width: 100%;
+        }
+
+        @media only screen and (min-width: 576px) and (max-width: 768px) {
+            width: 75%;
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 992px) {
+            width: 55%;
+        }
+
+        @media only screen and (min-width: 992px) and (max-width: 1400px) {
+            width: 37%;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        padding: 0 22px;
+    }
+}

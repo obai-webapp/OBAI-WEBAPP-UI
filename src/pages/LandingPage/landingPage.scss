@@ -1,0 +1,47 @@
+@import '@constants/typography.scss';
+
+.landing {
+    background-image: url('@images/car_dashboard.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+
+    &_wrapper {
+        height: inherit;
+        background-color: rgba(23, 22, 22, 0.6);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &-information {
+            color: black;
+            border-radius: 5px;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.6);
+            width: 700px;
+
+            & > h2 {
+                font-size: 2rem;
+                font-family: $font-secondary;
+                font-weight: 700;
+                font-style: normal;
+                color: #101c85;
+            }
+
+            & > p {
+                font-weight: 600;
+                margin: 1rem 0 0;
+                text-align: justify;
+            }
+
+            @media screen and (max-width: 750px) {
+                width: 85%;
+
+                & > p {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}

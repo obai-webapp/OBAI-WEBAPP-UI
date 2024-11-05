@@ -1,0 +1,20 @@
+// please feel free to override as per your need
+$x-small-screen: 300px;
+$small-screen: 575px;
+$medium-screen: 768px;
+$large-screen: 992px;
+$x-large-screen: 1200px;
+// for all screens greater than 1200
+$xx-large-screen: 1201px;
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == 1201px {
+        @media (min-width: $breakpoint) {
+            @content;
+        }
+    } @else {
+        @media (max-width: $breakpoint) {
+            @content;
+        }
+    }
+}

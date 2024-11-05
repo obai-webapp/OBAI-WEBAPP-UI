@@ -1,0 +1,9 @@
+version: "1"
+services:
+  - type: web
+    name: OBAI-FRONTEND-PRODUCT-WEBSITE
+    staticPublishPath: dist
+    buildCommand: npm run build
+    routes:
+      - match: "/*"
+        rewrite: "/index.html"

@@ -1,0 +1,68 @@
+@import '../../constants/colors.scss';
+@import '@constants/typography.scss';
+
+.view-claim-header {
+    box-shadow: 0px 33px 33px 0px #dadcfa;
+
+    h4 {
+        font-size: 33px;
+        color: $primary-color; // Use your new brand primary color
+        line-height: 64px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        
+        @media screen and (max-width: 576px) {
+            display: none;
+        }
+    }
+
+    .back-arrow {
+        display: flex;
+        align-items: center;
+
+        p {
+            font-size: 40px;
+            color: $primary-color;
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            margin-left: 26px;
+            opacity: 1;
+        }
+    }
+
+    .head-info {
+        p {
+            font-size: 16px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            color: $primary-dark-color;
+            margin-left: 41px;
+        }
+
+        span {
+            font-size: 16px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            opacity: 0.7;
+            color: $primary-dark-color;
+        }
+    }
+
+    .download-btn {
+        background: transparent;
+        color: $primary-dark-color; // Use your new brand primary dark color
+        font-size: 16px;
+        border-radius: 36px;
+        border: none;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+
+        svg { // Use svg selector for react-icons
+            margin-left: 8px;
+            width: 19px;
+            color: $primary-color; // Set icon color to match the new brand color
+        }
+    }
+}

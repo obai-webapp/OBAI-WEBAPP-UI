@@ -1,0 +1,20 @@
+@import '@constants/colors.scss';
+
+.claim-steps {
+    h4 {
+        font-size: 40px;
+        color: $primary-color; // Assuming $primary-color is the new brand color, otherwise adjust
+        line-height: 64px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    p {
+        color: $primary-color; // Adjusted to use the new brand color
+        font-size: 20px;
+        opacity: 0.7;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+    }
+}

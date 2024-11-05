@@ -1,0 +1,29 @@
+@import '@constants/colors.scss';
+
+.listing-page {
+    .action-button {
+        width: 30px;
+        height: 30px;
+        background-color: $light-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        .action-icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
+    .edit-button {
+        transition: all 0.5s ease-in-out;
+        &:hover {
+            border: 1px solid $info-color;
+        }
+    }
+    .delete-button {
+        transition: all 0.5s ease-in-out;
+        &:hover {
+            border: 1px solid $danger-color;
+        }
+    }
+}

@@ -1,0 +1,158 @@
+@import '@constants/colors.scss';
+
+.view-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .view-width {
+        width: 50%;
+
+        img {
+            width: 20px;
+            cursor: pointer;
+        }
+        .for-radio {
+            // .form-check-input:checked {
+            //     --bs-form-check-bg-image: url('@icons/check.svg') !important;
+            //     border-color: #101c8580;
+            // }
+            // .form-check-input:checked[type='radio'] {
+            //     --bs-form-check-bg-image: none;
+            // }
+
+            .form-check-input:checked {
+                background-color: rgb(16, 28, 133);
+                border-color: rgb(16, 28, 133);
+            }
+            .form-check-input:focus {
+                box-shadow: none;
+            }
+        }
+        .form-control {
+            font-size: 16px !important;
+            border-bottom: 1px solid #101c85 !important;
+            border: none;
+            background-color: transparent;
+            color: $primary-color !important;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            border-radius: 0 !important;
+            padding: 5px 0;
+            border-color: #101c85 !important;
+            &:focus {
+                box-shadow: none !important;
+                border-bottom: 1px solid #101c85 !important;
+                border: none;
+                outline: none !important;
+            }
+        }
+        .save-btn {
+            background: transparent;
+            color: #0fcba8;
+            font-size: 16px;
+            border-radius: 36px;
+            border: none;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            img {
+                margin-left: 12px;
+                width: 19px;
+            }
+        }
+        h5 {
+            font-size: 18px;
+            color: $primary-color;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .archive {
+            color: #ef0000 !important;
+            color: $primary-color;
+            font-size: 18px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        p {
+            color: $primary-color;
+            font-size: 18px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            opacity: 0.5;
+            word-wrap: break-word;
+        }
+        label {
+            color: $primary-color;
+            font-size: 18px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+        .active-label {
+            color: $primary-color;
+            font-size: 18px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            opacity: 1;
+        }
+        .non-active-label {
+            color: $primary-color;
+            font-size: 18px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            opacity: 0.4;
+        }
+        .accordion-button {
+            padding: 19px;
+            border-radius: 8px;
+            color: rgba(242, 92, 34, 1);
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            font-size: 19px;
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        .accordion-item {
+            background-color: #f9f9ff;
+        }
+        .accordion-body {
+            padding-top: 5px;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: transparent;
+            box-shadow: none;
+        }
+        .accordion-button:not(.collapsed)::after {
+            background-image: url('@icons/arrow-up.svg');
+            background-size: 15px;
+            position: relative;
+            top: -4px;
+        }
+
+        .accordion-button.collapsed::after {
+            background-image: url('@icons/arrow-up.svg');
+            background-size: 15px;
+            position: relative;
+            top: 6px;
+        }
+        @media screen and (max-width: 576px) {
+            width: 92%;
+        }
+        @media only screen and (min-width: 576px) and (max-width: 768px) {
+            width: 80%;
+        }
+        @media only screen and (min-width: 768px) and (max-width: 992px) {
+            width: 75%;
+        }
+        @media only screen and (min-width: 992px) and (max-width: 1200px) {
+            width: 56%;
+        }
+    }
+}

@@ -1,0 +1,383 @@
+@import './constants/colors.scss';
+@import './constants/typography.scss';
+
+:root {
+    font-family: $font-primary;
+    line-height: $line-height-medium;
+
+    color-scheme: light dark;
+    color: $light-color;
+    background: linear-gradient(to bottom, rgba(249, 249, 255, 1), rgba(225, 227, 251, 1));
+    background-repeat: no-repeat;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+.wrapper {
+    position: relative;
+    top: 0;
+    height: 100vh;
+}
+
+a {
+    font-weight: 500;
+    color: $link-color;
+    text-decoration: none;
+}
+a:hover {
+    color: $link-hover-color;
+}
+
+body {
+    margin: 0;
+    background-image: linear-gradient(to bottom, rgba(249, 249, 255, 1), rgba(225, 227, 251, 1));
+}
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: $body-bg-color;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $dark-color;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $dark-color;
+}
+p,
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: $dark-color;
+        background-color: $light-color;
+    }
+    a:hover {
+        color: $link-hover-color;
+    }
+}
+
+.ag-center-cols-container {
+    min-width: 100%;
+}
+
+.with-background {
+    background: $primary-btn transparent;
+    width: 278px;
+    color: white;
+    font-size: 24px;
+    border-radius: 36px;
+    border: none;
+    border: 2px solid rgba(33, 217, 206, 1) ant;
+    padding: 5px 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+}
+.dropdown-toggle::after {
+    display: none !important;
+}
+.img-border {
+    img {
+        border-radius: 10px;
+    }
+}
+.for-edit-img {
+    position: relative;
+    .edit-icon-img {
+        cursor: pointer;
+        position: absolute;
+        top: 16px;
+        right: 14px;
+        background: white;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        img {
+            width: 15px !important;
+            height: auto !important;
+            border-radius: 0 !important;
+        }
+    }
+}
+
+.add-another {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    h6 {
+        font-size: 15px;
+        color: $primary-color;
+        text-align: center;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        cursor: pointer;
+    }
+}
+
+.empty-add {
+    h6 {
+        font-size: 15px;
+        color: $primary-color;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        cursor: pointer;
+    }
+}
+.for-mob-view {
+    @media screen and (max-width: 576px) {
+        overflow-y: scroll !important;
+        height: 432px !important;
+    }
+}
+.camera-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.btn-toolbar {
+    justify-content: end;
+}
+.camera-div-second {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.without-background {
+    background: transparent;
+    width: 278px;
+    color: rgba(33, 217, 206, 1);
+    font-size: 24px;
+    border-radius: 36px;
+    border: 2px solid rgba(33, 217, 206, 1) ant;
+    padding: 5px 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+}
+.end-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HTML: <div class="loader"></div> */
+
+.textLoader {
+    display: none;
+
+    &_wrapper {
+        position: absolute;
+        z-index: 9;
+        width: 100%;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgb(0, 0, 0, 0.5);
+        // background-image: url("photographer.jpg");
+        // background: #d3cce3; /* fallback for old browsers */
+        // background: -webkit-linear-gradient(to right, rgb(229, 226, 234, 0.8), rgb(211, 204, 227, 0.8)); /* Chrome 10-25, Safari 5.1-6 */
+        // background: linear-gradient(
+        //     to right,
+        //     rgb(233, 228, 240, 0.8),
+        //     rgb(211, 204, 227, 0.8)
+        // ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        &-loader {
+            // position: absolute;
+            z-index: 99999;
+            width: fit-content;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: 40px;
+            padding-bottom: 8px;
+            background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+            animation: l2 2s linear infinite;
+            color: white;
+        }
+
+        &-loader:before {
+            content: 'Loading...';
+        }
+        @keyframes l2 {
+            to {
+                background-size: 100% 3px;
+            }
+        }
+    }
+}
+
+.imageUploadRef {
+    display: none;
+}
+
+.status_label {
+    padding: 0.4rem 1.5rem;
+    border-radius: 5px;
+    color: white !important;
+    font-size: 1.2rem !important;
+
+    & > span {
+        font-weight: bold;
+    }
+}
+
+.pending {
+    background-color: #ffc107;
+}
+
+.on_going {
+    background-color: #158b4c;
+}
+
+.archive {
+    background-color: #6c757d;
+}
+
+.approve {
+    background-color: #158b4c;
+}
+
+.reject {
+    background-color: #dc3545;
+}
+
+.claim_not_exist {
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: rgb(0, 0, 0, 0.6);
+    padding: 1rem;
+    width: 650px;
+
+    & > h2 {
+        font-size: 2rem !important;
+        text-align: start !important;
+        color: white !important;
+    }
+
+    & > p {
+        font-size: 1rem !important;
+        text-align: start !important;
+        color: white !important;
+    }
+
+    @media screen and (max-width: 750px) {
+        margin: auto;
+        width: 95%;
+    }
+}
+
+.contact_us_ {
+    & > p {
+        font-size: 1rem !important;
+        transition: 250ms ease-in-out;
+        color: gray !important;
+        cursor: pointer;
+        width: fit-content;
+        margin: 1.5rem auto 0;
+
+        &:hover {
+            color: rgb(20, 10, 92) !important;
+        }
+    }
+}
+
+.rws-close {
+    background-color: $primary-color !important;
+    font-weight: bold;
+    color: white !important;
+}
+
+.goToHome {
+    margin: 2rem 0 0;
+    background-color: #158b4c;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 250ms ease-in-out;
+    border: 1px solid #158b4c;
+    border-radius: 5px;
+    font-weight: bold;
+
+    &:hover {
+        background-color: #0c5a30;
+    }
+}
+
+.archive-btn > p {
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    transition: 250ms ease-in-out;
+
+    &:hover {
+        background-color: rgb(234, 234, 234) !important;
+        color: white !important;
+    }
+}
+
+.totalPrice {
+    border: 1px solid rgb(169, 169, 169);
+    padding: 0.4rem;
+    border-radius: 5px;
+    background-color: rgb(240, 240, 240);
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: rgb(16, 28, 133);
+
+    & > span {
+        font-weight: 900;
+        // color: rgb(242, 92, 34);
+        color: rgb(242, 92, 34);
+    }
+}
+
+.rws-backdrop {
+    flex-direction: row !important;
+    justify-content: center !important;
+}
+
+.showPassword {
+    display: flex;
+    align-items: center;
+
+    & > label {
+        margin-left: 0.3rem;
+        font-size: 0.8rem;
+        color: rgb(122, 122, 213);
+    }
+}
+.purple-status {
+    background-color: rgb(185, 138, 243);
+    color: white;
+    padding: 7px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 90px;
+    text-align: center;
+}

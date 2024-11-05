@@ -1,0 +1,48 @@
+@import '@constants/colors.scss';
+@import '@constants/typography.scss';
+
+.delete-modal {
+    h4 {
+        color: #101C85; // Updated to primary dark blue
+        font-size: 23px;
+        margin: 0;
+    }
+    
+    p {
+        color: #101C85; // Updated to primary dark blue
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .last-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .cancel-background {
+            background: transparent;
+            color: #FF8C00; // Updated to the brand's tertiary color (orange)
+            font-size: 20px;
+            border-radius: 36px;
+            border: 2px solid #FF8C00; // Updated to the brand's tertiary color (orange)
+            padding: 5px 0;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            width: 104px;
+        }
+
+        .del-button {
+            background: #F25C22; // Updated to the primary brand button color (orange-red)
+            color: white;
+            font-size: 20px;
+            border-radius: 36px;
+            border: none;
+            border: 2px solid #F25C22; // Border matching the button color
+            padding: 5px 0;
+            width: 104px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+@import '@constants/colors.scss';
+
+.how-it-works {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 100vh;
+    .for-width {
+        width: 55%;
+        @media screen and (max-width: 576px) {
+            width: 87%;
+        }
+        @media only screen and (min-width: 576px) and (max-width: 768px) {
+            width: 60%;
+        }
+        @media only screen and (min-width: 768px) and (max-width: 992px) {
+            width: 55%;
+        }
+    }
+    .banner-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h2 {
+            font-size: 48px;
+            color: $primary-color;
+            line-height: 64px;
+            text-align: center;
+        }
+        img {
+            width: 250px;
+            border-radius: 8px;
+        }
+    }
+    .bullets {
+        margin-left: 20px;
+        p {
+            color: $primary-color;
+            font-size: 24px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+        ul {
+            margin-left: 30px;
+            li {
+                color: $primary-color;
+                font-size: 24px;
+                font-family: 'Lato', sans-serif;
+                font-weight: 400;
+            }
+        }
+    }
+}

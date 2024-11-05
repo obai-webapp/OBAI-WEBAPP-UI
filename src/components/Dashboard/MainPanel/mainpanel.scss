@@ -1,0 +1,25 @@
+@import '@constants/colors.scss';
+@import '@constants/typography.scss';
+
+.main-panel {
+    position: relative;
+    float: right;
+    min-height: 100vh;
+    width: 100%; // total width minus sidebar width
+    transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+
+    // Using the updated background from the HEAD version
+    background-image: linear-gradient(to bottom, #f9f4e8, #e8e1d1);
+    background-repeat: no-repeat;
+
+    .main-content-wrapper {
+        min-height: calc(100vh - 123px);
+        max-width: 2560px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.full-width-panel {
+    width: 100%;
+}

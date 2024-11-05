@@ -1,0 +1,269 @@
+@import '@constants/colors.scss';
+
+.step-component {
+    display: flex;
+    justify-content: center;
+}
+.create-steps {
+    h2 {
+        font-size: 16px;
+        color: #f25c22;
+        font-family: 'Lato', sans-serif;
+        font-weight: 900;
+    }
+    .width-mob {
+        width: 332px;
+        @media screen and (max-width: 576px) {
+            width: 309px;
+        }
+    }
+    .form-control {
+        font-size: 16px !important;
+        padding: 13px !important;
+        border: 1px solid #101c8540 !important;
+        background-color: #f8f9fa;
+        color: $primary-color !important;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        border-radius: 15px !important;
+        width: 332px;
+        background: #f9f9ff;
+        border-color: #101c8540 !important;
+        &:focus {
+            box-shadow: none !important;
+            border: 1px solid #101c8540;
+            outline: none !important;
+        }
+        &::placeholder {
+            color: #101c85;
+            opacity: 0.6;
+        }
+    }
+    .owner-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .form-control {
+            width: 158px !important;
+            @media screen and (max-width: 576px) {
+                width: 151px !important;
+            }
+        }
+    }
+
+    span {
+        color: $primary-color;
+        font-size: 20px;
+    }
+    .checkbox-data {
+        .form-check .form-check-input {
+            border-color: #101c8540 !important;
+            cursor: pointer;
+        }
+        .form-check-input:checked {
+            background-color: #f25c22;
+            cursor: pointer;
+            border-color: #f25c22 !important;
+        }
+        .form-check-input:checked[type='radio'] {
+            --bs-form-check-bg-image: none;
+            cursor: pointer;
+        }
+        .form-check-input:focus {
+            box-shadow: none;
+        }
+        label {
+            color: $primary-color;
+            font-size: 16px;
+            opacity: 0.7;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+        }
+    }
+    .car-corners {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 22px;
+        justify-content: center;
+        .all-corners {
+            border-radius: 12px;
+            border: 1px solid #c5c5c5;
+            .for-title {
+                background: rgba(225, 227, 251, 1);
+                border-radius: 12px 12px 5px 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 5px;
+                p {
+                    color: $primary-color;
+                    font-size: 14px;
+                    margin-left: 0px;
+                    font-family: 'Lato', sans-serif;
+                    font-weight: 700;
+                    max-width: max-content;
+                    opacity: 0.7;
+                }
+            }
+            .for-img {
+                img {
+                    border-radius: 0 0 12px 12px;
+                    object-fit: cover;
+                    border: none;
+                    @media screen and (max-width: 576px) {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        @media screen and (max-width: 576px) {
+            grid-template-columns: auto;
+        }
+    }
+
+    .claim-created {
+        .for-gap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30vh;
+            img {
+                width: 400px;
+            }
+        }
+        h4 {
+            font-size: 40px;
+            color: $primary-color;
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            text-align: center;
+        }
+        p {
+            color: $primary-color;
+            font-size: 20px;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        .thank-div {
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+
+        .share-div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .copy-div {
+                display: flex;
+                align-items: center;
+                background-color: #f9f9ff;
+                border-radius: 30px;
+                padding: 10px 16px;
+                margin-right: 10px;
+                img {
+                    width: 16px;
+                    margin-right: 10px;
+                    cursor: pointer;
+                }
+            }
+            img {
+                width: 29px;
+                cursor: pointer;
+            }
+        }
+    }
+    .for-margin {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+    }
+    .owner-margin {
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        @media screen and (max-width: 576px) {
+            margin-bottom: 11px !important;
+        }
+    }
+    .contact-margin {
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        @media screen and (max-width: 576px) {
+            margin-bottom: 4px !important;
+        }
+    }
+    .for-damage {
+        img {
+            width: 332px;
+            height: 265px;
+            object-fit: cover;
+        }
+    }
+    .for-img-vin {
+        img {
+            width: 286px;
+            border: none !important;
+        }
+    }
+    .vin-number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+            color: rgba(242, 92, 34, 1);
+            font-weight: 600;
+            margin-left: 0;
+        }
+    }
+    .code-number {
+        background-color: rgba(249, 249, 255, 1);
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 11px;
+    }
+
+    .code-number-odo {
+        background-color: rgba(249, 249, 255, 1);
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 11px;
+        width: 228px;
+        p {
+            color: $primary-color;
+            font-size: 20px;
+            max-width: 100%;
+            margin-left: 0px;
+        }
+    }
+    .odometer-form {
+        display: flex;
+        align-items: center;
+        .form-select {
+            background-color: white;
+            color: rgba(16, 28, 133, 1);
+            border: none;
+            outline: none;
+            border-radius: 3px;
+        }
+    }
+
+    .heading-block {
+        h4 {
+            text-align: left;
+            font-size: 24px;
+        }
+    }
+    .final-review {
+        span {
+            margin-left: 0;
+        }
+    }
+}

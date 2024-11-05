@@ -1,0 +1,81 @@
+@import '@constants/colors.scss';
+@import '@constants/typography.scss';
+
+.data-table-custom {
+    background-color: transparent;
+    border-radius: 20px;
+    padding: 0;
+    .pending-text {
+        background: #F9CF3A;
+        padding: 7px 8px;
+        border-radius: 10px;
+        color: #101C85;
+        width: 90px;
+        text-align: center;
+    }
+    .archive-text {
+        background: #FF5F1E; // Updated to the new brand color
+        padding: 7px 8px;
+        color: #F9F9FF;
+        border-radius: 10px;
+        width: 90px;
+        text-align: center;
+    }
+    .ongoing-text {
+        background: #0FCB2D;
+        color: #F9F9FF;
+        padding: 7px 8px;
+        border-radius: 10px;
+        width: 90px;
+        text-align: center;
+    }
+    .dropdown-menu.show {
+        transform: translate3d(0px, 34px, 0px) !important;
+        background: linear-gradient(to bottom, #FF5F1E, #FF9F00); // Updated gradient with the new brand colors
+    }
+    .dropdown-item {
+        &:hover {
+            background: transparent;
+        }
+        .dropdown-toggle::after {
+            display: none !important;
+        }
+    }
+    .rdt_Pagination {
+        background-color: transparent;
+        border: none;
+    }
+    .rdt_TableCell {
+        width: max-content;
+    }
+    .rdt_Table {
+        min-height: 500px;
+        background: transparent;
+    }
+    .dropdown-menu {
+        width: 100px;
+    }
+    .table-text {
+        color: #FF5F1E; // Updated to the new brand color
+        font-size: 16px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+    }
+    .rdt_Table,
+    .rdt_TableRow,
+    .rdt_TableCol,
+    .rdt_TableCol_Sortable,
+    .rdt_TableCell,
+    .rdt_TableHeader,
+    .rdt_TableFooter,
+    .rdt_TableHeadRow,
+    .rdt_TableBody,
+    .rdt_ExpanderRow {
+        background: transparent !important;
+        border: none;
+    }
+    .rdt_TableHead {
+        box-shadow: 33px 3px 29px 14px #D5D7FB;
+    }
+}
+

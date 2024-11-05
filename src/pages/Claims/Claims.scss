@@ -1,0 +1,74 @@
+@import '@constants/colors.scss';
+@import '@constants/typography.scss';
+
+.claims {
+    // Styling for active tab
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+        color: #ff5f1e; // New brand color for active tab
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        border-bottom: 3px solid #171717; // Darker blue for the active border
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        opacity: 1;
+    }
+
+    // Styling for inactive tabs
+    .nav-link {
+        color: #171717; // Dark blue for the inactive tabs
+        border: none;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        border-bottom: 1px solid #dcdcdc; // Light gray for the border
+        opacity: 0.6;
+        &:hover {
+            opacity: 1; // Makes the tab fully opaque when hovered
+        }
+    }
+
+    // Overall styling for the navigation tabs
+    .nav-tabs {
+        display: flex;
+        align-items: center;
+        border: none;
+        padding-bottom: 0;
+        padding: 0px 62px;
+        margin-top: 28px;
+        border-bottom: 1px solid #dfdfdf; // Light border under the entire tab section
+
+        // Responsive handling for mobile screens
+        @media screen and (max-width: 576px) {
+            padding: 0 9px;
+        }
+        
+        // Responsive handling for tablets
+        @media only screen and (min-width: 576px) and (max-width: 768px) {
+            padding: 0 30px;
+        }
+    }
+
+    // Styling for the archived section
+    .archived-section {
+        background: #101c85; // Dark blue background for archived section
+        padding: 21px 0;
+        button {
+            background: none;
+            border: none;
+            outline: none;
+            color: white;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            cursor: pointer; // Ensure the button has a pointer cursor
+            &:hover {
+                opacity: 0.8; // Adds hover effect for button
+            }
+        }
+        img {
+            cursor: pointer;
+        }
+    }
+}

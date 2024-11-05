@@ -1,0 +1,49 @@
+@import '@constants/colors.scss';
+@import '@constants/typography.scss';
+
+.card-small {
+    height: 117px;
+}
+.card-large {
+    height: 450px;
+}
+.custom-card {
+    box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+    background-color: $body-bg-color;
+    padding: 10px 20px;
+    margin-bottom: 1.5rem;
+
+    .card-header {
+        border-bottom: 0px;
+        background-color: inherit;
+
+        .flexed-card-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .card-title {
+                margin-top: 10px;
+                font-size: 18px;
+                font-family: $font-primary;
+                color: #FF8C00; // Updated to the new brand color
+                text-transform: capitalize;
+            }
+
+            select {
+                width: auto !important;
+            }
+        }
+
+        .card-description {
+            font-family: $font-secondary;
+            font-size: 18px;
+            color: $secondary-color;
+        }
+    }
+
+    .card-footer {
+        background-color: inherit;
+    }
+}

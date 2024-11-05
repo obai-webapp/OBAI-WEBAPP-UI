@@ -1,0 +1,88 @@
+@import '@constants/colors.scss';
+
+.vin-quality-check {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+
+    h4 {
+        font-size: 48px;
+        color: $primary-color;
+        text-align: center;
+        font-family: 'Lato', sans-serif;
+        font-weight: 900;
+    }
+    .ai-img {
+        border-radius: 14px;
+        border: 10px solid rgba(244, 136, 58, 1);
+        img {
+            width: 311px;
+            height: 234px;
+        }
+    }
+    p {
+        color: $primary-color;
+        font-size: 24px;
+        text-align: center;
+        opacity: 0.7;
+    }
+
+    .scan-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+        width: 380px;
+        min-height: 214px;
+        padding: 16px 0;
+        box-shadow: -1px 1px 15px 3px #bbc8e6;
+        background-image: linear-gradient(to bottom, rgba(249, 249, 255, 1), rgba(225, 227, 251, 1));
+        h4 {
+            font-size: 28px;
+            color: $primary-color;
+            text-align: center;
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+        }
+        span {
+            font-size: 17px;
+            color: rgba(242, 92, 34, 1);
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        p {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            opacity: 1;
+            font-size: 17px;
+            text-align: center;
+        }
+        .edit-btn {
+            display: flex;
+            align-items: center;
+            img {
+                width: 19px;
+                border-radius: 0;
+            }
+            p {
+                font-family: 'Lato', sans-serif;
+                font-weight: 400;
+                opacity: 1;
+                margin-left: 6px;
+                background-image: linear-gradient(
+                    to right,
+                    rgba(15, 203, 168, 1),
+                    rgba(33, 217, 206, 1)
+                ); /* Add linear gradient to text color */
+                -webkit-background-clip: text; /* Apply text clipping */
+                -webkit-text-fill-color: transparent;
+            }
+        }
+        @media screen and (max-width: 576px) {
+            width: 300px;
+        }
+    }
+}

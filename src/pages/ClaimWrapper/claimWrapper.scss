@@ -1,0 +1,75 @@
+.main-stepper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    .heading-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 576px) {
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+    }
+    h2 {
+        color: rgba(242, 92, 34, 1);
+        font-size: 16px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 600;
+        @media screen and (min-width: 576px) {
+            text-align: center;
+        }
+    }
+
+    .end-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+            color: #0fcba8;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
+
+    .camera-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .for-step-img {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .stepper-img {
+            width: 190px;
+        }
+        .id-number {
+            position: absolute;
+            margin-right: 24px;
+            p {
+                font-family: 'Lato', sans-serif;
+                font-weight: 600;
+                color: #101c85;
+            }
+            @media screen and (max-width: 576px) {
+                left: 47px;
+            }
+        }
+        @media screen and (max-width: 576px) {
+            justify-content: flex-start;
+        }
+    }
+    @media screen and (max-width: 576px) {
+        padding: 0 22px;
+    }
+
+    @media screen and (min-width: 576px) {
+        justify-content: center;
+    }
+}

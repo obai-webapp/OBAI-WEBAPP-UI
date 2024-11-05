@@ -1,0 +1,41 @@
+.odometer-quality-check {
+  .with-background {
+    background-color: #FF5733; // New brand color
+    color: #FFFFFF;
+  }
+
+  .without-background {
+    background-color: transparent;
+    border: 2px solid #FF5733; // New brand color for border
+    color: #FF5733; // New brand color for text
+  }
+
+  h4 {
+    color: #FF5733; // New brand color for headings
+  }
+
+  p {
+    color: #333333; // Adjust based on the new brand theme
+  }
+
+  .add-another {
+    h6 {
+      color: #FF5733; // New brand color for "Add Another Image" text
+    }
+  }
+
+  .double-check {
+    h4 {
+      color: #FF5733; // New brand color for "Double Check" heading
+    }
+  }
+
+  .end-button {
+    button {
+      &:hover {
+        background-color: #FF5733; // Hover effect with brand color
+        color: #FFFFFF;
+      }
+    }
+  }
+}

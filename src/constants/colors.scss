@@ -1,0 +1,169 @@
+// // Color Palette
+// $primary-color: #ff5f1e;                     // Primary color
+// $primary-btn: linear-gradient(to right, #ffbb00, #ff8c00); // Action Gradient
+// $primary-border: #ffbb00;                    // Tertiary Gradient
+// $secondary-color: #ffd900;                   // Secondary
+// $success-color: #28a745;                     // Success (default)
+// $info-color: #17a2b8;                        // Info (default)
+// $warning-color: #ffc107;                     // Warning (default)
+// $danger-color: #dc3545;                      // Danger (default)
+// $light-color: #fffdf9;                       // Off-white
+// $dark-color: #171717;                        // Dark (black)
+// $secondary-light: #f9f4e8;                   // Light Off-white
+// $primary-border: #ffd900;                    // Secondary Gradient
+
+// // Text Colors
+// $text-color: #171717;                        // Dark color for inner text
+// $heading-color: #171717;                     // Dark color for headings
+// $link-color: $primary-color;                 // Link color
+// $link-hover-color: darken($link-color, 10%); // Link hover color
+
+// // Background Colors
+// $body-bg-color: #fffdf9;                     // Body background (Off-white)
+// $container-bg-color: #f9f4e8;                // Container background (Light Off-white)
+
+// // Button Colors
+// $btn-primary-color: $primary-color;          // Primary button text color
+// $btn-primary-bg-color: $primary-color;       // Primary button background color
+// $btn-secondary-color: $secondary-color;      // Secondary button text color
+// $btn-secondary-bg-color: $secondary-color;   // Secondary button background color
+// $btn-success-color: $success-color;          // Success button text color
+// $btn-success-bg-color: $success-color;       // Success button background color
+// $btn-info-color: $info-color;                // Info button text color
+// $btn-info-bg-color: $info-color;             // Info button background color
+// $btn-warning-color: $warning-color;          // Warning button text color
+// $btn-warning-bg-color: $warning-color;       // Warning button background color
+// $btn-danger-color: $danger-color;            // Danger button text color
+// $btn-danger-bg-color: $danger-color;         // Danger button background color
+
+// // Form Colors
+// $input-border-color: #ccc;                   // Input border color
+// $input-focus-border-color: $primary-color;   // Input focus border color
+// $input-placeholder-color: #999;              // Input placeholder color
+// $input-disabled-bg-color: #f8f9fa;           // Input disabled background color
+// $input-disabled-color: $secondary-color;     // Input disabled text color
+
+// // Navbar Colors
+// $navbar-bg-color: $primary-color;            // Navbar background color
+// $navbar-text-color: #fff;                    // Navbar text color
+// $navbar-link-color: #fff;                    // Navbar link color
+// $navbar-link-hover-color: #eee;              // Navbar link hover color
+
+// // Footer Colors
+// $footer-bg-color: $dark-color;               // Footer background color
+// $footer-text-color: #fff;                    // Footer text color
+
+// // Card Colors
+// $card-bg-color: #fff;                        // Card background color
+// $card-text-color: $text-color;               // Card text color
+// $card-link-color: $link-color;               // Card link color
+// $card-link-hover-color: $link-hover-color;   // Card link hover color
+
+// // Alert Colors
+// $alert-success-bg-color: $success-color;     // Alert success background color
+// $alert-success-text-color: #fff;             // Alert success text color
+// $alert-info-bg-color: $info-color;           // Alert info background color
+// $alert-info-text-color: #fff;                // Alert info text color
+// $alert-warning-bg-color: $warning-color;     // Alert warning background color
+// $alert-warning-text-color: #fff;             // Alert warning text color
+// $alert-danger-bg-color: $danger-color;       // Alert danger background color
+// $alert-danger-text-color: #fff;              // Alert danger text color
+
+// // Modal Colors
+// $modal-bg-color: $dark-color;                // Modal background color
+// $modal-text-color: #fff;                     // Modal text color
+// $modal-link-color: $link-color;              // Modal link color
+// $modal-link-hover-color: $link-hover-color;  // Modal link hover color
+
+// // Additional brand-related colors
+// $brand-secondary-color: #f25c22;             // Brand secondary color
+// $primary-color: #f25c22;                     // Primary brand color
+// $secondary-color: #0fcba8;                   // Secondary brand color
+
+
+// Color Palette
+$primary-color: #ff5f1e;                     // Primary color
+$primary-btn: linear-gradient(to right, #ffbb00, #ff8c00); // Action Gradient
+$primary-border: #ffbb00;                    // Tertiary Gradient
+$secondary-color: #ffd900;                   // Secondary
+$success-color: #28a745;                     // Success (default)
+$info-color: #17a2b8;                        // Info (default)
+$warning-color: #ffc107;                     // Warning (default)
+$danger-color: #dc3545;                      // Danger (default)
+$light-color: #fffdf9;                       // Off-white
+$dark-color: #171717;                        // Dark (black)
+$secondary-light: #f9f4e8;                   // Light Off-white
+$primary-border: #ffd900;                    // Secondary Gradient
+
+// Text Colors
+$text-color: #171717;                        // Dark color for inner text
+$heading-color: #171717;                     // Dark color for headings
+$link-color: $primary-color;                 // Link color
+$link-hover-color: darken($link-color, 10%); // Link hover color
+
+// Background Colors
+$body-bg-color: #fffdf9;                     // Body background (Off-white)
+$container-bg-color: #f9f4e8;                // Container background (Light Off-white)
+
+// Button Colors
+$btn-primary-color: $primary-color;          // Primary button text color
+$btn-primary-bg-color: $primary-color;       // Primary button background color
+$btn-secondary-color: $secondary-color;      // Secondary button text color
+$btn-secondary-bg-color: $secondary-color;   // Secondary button background color
+$btn-success-color: $success-color;          // Success button text color
+$btn-success-bg-color: $success-color;       // Success button background color
+$btn-info-color: $info-color;                // Info button text color
+$btn-info-bg-color: $info-color;             // Info button background color
+$btn-warning-color: $warning-color;          // Warning button text color
+$btn-warning-bg-color: $warning-color;       // Warning button background color
+$btn-danger-color: $danger-color;            // Danger button text color
+$btn-danger-bg-color: $danger-color;         // Danger button background color
+
+// Form Colors
+$input-border-color: #ccc;                   // Input border color
+$input-focus-border-color: $primary-color;   // Input focus border color
+$input-placeholder-color: #999;              // Input placeholder color
+$input-disabled-bg-color: #f8f9fa;           // Input disabled background color
+$input-disabled-color: $secondary-color;     // Input disabled text color
+
+// Navbar Colors
+$navbar-bg-color: $primary-color;            // Navbar background color
+$navbar-text-color: #fff;                    // Navbar text color
+$navbar-link-color: #fff;                    // Navbar link color
+$navbar-link-hover-color: #eee;              // Navbar link hover color
+
+// Footer Colors
+$footer-bg-color: $dark-color;               // Footer background color
+$footer-text-color: #fff;                    // Footer text color
+
+// Card Colors
+$card-bg-color: #fff;                        // Card background color
+$card-text-color: $text-color;               // Card text color
+$card-link-color: $link-color;               // Card link color
+$card-link-hover-color: $link-hover-color;   // Card link hover color
+
+// Alert Colors
+$alert-success-bg-color: $success-color;     // Alert success background color
+$alert-success-text-color: #fff;             // Alert success text color
+$alert-info-bg-color: $info-color;           // Alert info background color
+$alert-info-text-color: #fff;                // Alert info text color
+$alert-warning-bg-color: $warning-color;     // Alert warning background color
+$alert-warning-text-color: #fff;             // Alert warning text color
+$alert-danger-bg-color: $danger-color;       // Alert danger background color
+$alert-danger-text-color: #fff;              // Alert danger text color
+
+// Modal Colors
+$modal-bg-color: $dark-color;                // Modal background color
+$modal-text-color: #fff;                     // Modal text color
+$modal-link-color: $link-color;              // Modal link color
+$modal-link-hover-color: $link-hover-color;  // Modal link hover color
+
+// Additional brand-related colors
+$brand-secondary-color: #f25c22;             // Brand secondary color
+$primary-color: #f25c22;                     // Primary brand color
+$secondary-color: #0fcba8;                   // Secondary brand color
+// Color Palette in @constants/colors.scss
+$primary-color: #ff8c00;
+$primary-dark-color: #cc7000; // Defined directly as a darkened version of the primary color
+$primary-btn-light: lighten($primary-color, 10%); // Light variant of the primary color
+$primary-btn-dark: darken($primary-color, 10%);  // Dark variant of the primary color

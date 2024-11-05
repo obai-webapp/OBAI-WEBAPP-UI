@@ -1,0 +1,54 @@
+@import '@constants/colors.scss';
+@import '@constants/typography.scss';
+
+.download-pdf {
+    h4 {
+        font-size: 23px;
+        margin: 0;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+    }
+    
+    h5 {
+        font-size: 20px;
+        margin: 0;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        color: #101C85; // Updated to primary dark blue
+    }
+    
+    p {
+        color: #101C85; // Updated to primary dark blue
+        font-size: 18px;
+        margin: 0;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        opacity: 0.7;
+    }
+    
+    .form-head {
+        background-color: #f6faff; // Light brand-related background color
+        padding: 7px;
+        border-radius: 7px;
+
+        h4 {
+            margin: 0;
+        }
+    }
+
+    .pdf-btn {
+        display: flex;
+        justify-content: end;
+
+        button {
+            background: #F25C22; // Updated to primary brand button color (orange-red)
+            color: white;
+            font-size: 16px;
+            border-radius: 36px;
+            border: 2px solid #F25C22; // Border matching button color
+            padding: 5px 23px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+@import '@constants/colors.scss';
+
+.logout-modal {
+    backdrop-filter: blur(10px);
+    .modal-content {
+        background-image: linear-gradient(to bottom, #fffd9f, #f9f4e8); // Updated brand gradient
+        border-radius: 15px;
+    }
+    img {
+        width: 119px;
+    }
+    .logout-text {
+        background-color: #f9f9ff;
+        border-radius: 15px;
+        padding: 24px 34px;
+        p {
+            font-size: 18px;
+            color: #F25C22; // Updated to new primary brand color
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+        }
+    }
+}

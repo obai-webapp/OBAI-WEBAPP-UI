@@ -1,0 +1,90 @@
+@import '@constants/colors.scss';
+
+.retake-modal {
+    backdrop-filter: blur(10px);
+    .modal-body {
+        background-image: linear-gradient(to bottom, rgba(249, 249, 255, 1), rgba(225, 227, 251, 1));
+        border-radius: 15px;
+    }
+    .modal-header {
+        border-bottom: none !important;
+    }
+
+    .profile-section {
+        background: white;
+        border-radius: 15px;
+        padding: 24px;
+        .profile-img {
+            background-image: linear-gradient(
+                to bottom,
+                rgba(244, 136, 58, 1),
+                rgba(242, 92, 34, 1),
+                rgba(242, 92, 34, 1)
+            );
+            display: flex;
+            justify-content: center;@import '@constants/colors.scss';
+
+            .retake-modal {
+                backdrop-filter: blur(10px);
+                .modal-body {
+                    background-image: linear-gradient(to bottom, #fffd9f, #f9f4e8); // Updated to new brand gradient
+                    border-radius: 15px;
+                }
+                .modal-header {
+                    border-bottom: none !important;
+                }
+            
+                .profile-section {
+                    background: white;
+                    border-radius: 15px;
+                    padding: 24px;
+                    .profile-img {
+                        background-image: linear-gradient(
+                            to bottom,
+                            #F25C22, // Updated to primary brand color
+                            #FF8C00 // Secondary brand color
+                        );
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 50%;
+                        width: 40px;
+                        height: 40px;
+                        img {
+                            width: 20px;
+                        }
+                    }
+                    p {
+                        color: #F25C22; // Updated to primary brand color
+                        font-size: 18px;
+                    }
+                }
+            
+                .img-border {
+                    border: 1px solid #101C85; // New brand color
+                    border-radius: 8px;
+                    background-image: linear-gradient(to bottom, #42A9D4, #101C85); // Updated to brand gradient
+                }
+            }
+            
+            align-items: center;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            img {
+                width: 20px;
+            }
+        }
+        p {
+            color: $primary-color;
+            font-size: 18px;
+        }
+    }
+
+    .img-border {
+        border: 1px solid rgba(16, 28, 133, 1);
+        border-radius: 8px;
+
+        background-image: linear-gradient(to bottom, rgba(66, 169, 212, 1), rgba(16, 28, 133, 1));
+    }
+}

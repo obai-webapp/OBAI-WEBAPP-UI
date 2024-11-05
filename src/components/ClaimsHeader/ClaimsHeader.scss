@@ -1,0 +1,84 @@
+@import '@constants/colors.scss';
+@import '@constants/typography.scss';
+
+.claim-header {
+    h4 {
+        font-size: 33px;
+        color: #FF8C00; // Updated to the new brand color
+        line-height: 64px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+    }
+
+    .search-icon {
+        img {
+            width: 21px;
+            cursor: pointer;
+        }
+    }
+
+    .search-field {
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        padding: 7px 8px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        border-radius: 6.25px;
+        border: 1px solid #d4e7ff;
+        background: #f6faff;
+
+        img {
+            width: 21px;
+            cursor: pointer;
+        }
+
+        input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: black;
+            padding-left: 8px;
+            width: 100%;
+        }
+
+        ::placeholder {
+            color: #d0d0d0;
+            padding-left: 3px;
+            font-size: 14px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            opacity: 1 !important;
+        }
+
+        .search-icon2 {
+            display: flex;
+            justify-content: end;
+        }
+    }
+
+    .create-btn {
+        display: flex;
+        justify-content: end;
+
+        button {
+            background: linear-gradient(to left, #FF8C00, #FF9F00) transparent; // Updated gradient with the new brand color
+            color: white;
+            font-size: 16px;
+            border-radius: 36px;
+            border: none;
+            padding: 3px 33px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+
+            p {
+                margin-left: 7px;
+                font-size: 19px;
+                font-family: 'Lato', sans-serif;
+                font-weight: 800;
+            }
+        }
+    }
+}

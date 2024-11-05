@@ -1,0 +1,21 @@
+.radio-button {
+    .form-check-input:checked {
+        background-color: inherit; // Inherit custom color from inline style
+        border-color: inherit;
+        border-radius: 50%;
+    }
+    .form-check-input:checked[type='checkbox'] {
+        --bs-form-check-bg-image: none !important;
+    }
+    .form-check-input[type='checkbox'] {
+        border-radius: 50%;
+        width: 14px;
+        height: 14px;
+    }
+    .form-check-input:checked[type='radio'] {
+        --bs-form-check-bg-image: none;
+    }
+    .form-check-input:focus {
+        box-shadow: 0 0 0 3px rgba(242, 92, 34, 0.25); // Custom focus styling
+    }
+}
