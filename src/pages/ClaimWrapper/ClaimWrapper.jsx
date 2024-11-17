@@ -555,8 +555,7 @@ const ClaimWrapper = (props) => {
                 </button>
             )}
 
-            {/* Conditionally render "Take Pic" and "Upload image" buttons only if not on the Dashboard VIN step */}
-            {activeStep !== 2 && activeStep !== screenList.length - 1 && !isShowNextButton() && (
+            {activeStep !== screenList.length - 1 && !isShowNextButton() && (
                 <>
                     <button
                         className="lato-regular with-background mt-3"
@@ -580,7 +579,6 @@ const ClaimWrapper = (props) => {
         </div>
     );
 
-
     const renderUIWrapper = (Component) => (
         <>
             {renderStepsUI(screenList[getIndex]?.stepImage)}
@@ -599,61 +597,61 @@ const ClaimWrapper = (props) => {
 
             case 0:
                 return <WelcomeScreen claim={claim} setActiveStep={setActiveStep} pageIndex={activeStep} />;
-
+    
             case 1:
                 return <HowItWorks setActiveStep={setActiveStep} pageIndex={activeStep} />;
-
+    
             case 2:
-                return renderUIWrapper(DashboardVin);
-
+                return renderUIWrapper(DashboardVin); 
+    
             case 3:
-                return renderUIWrapper(DoorJamVIN);
-
+                return renderUIWrapper(DoorJamVIN); 
+    
             case 4:
                 return renderUIWrapper(PassengerFender);
-
+    
             case 5:
                 return renderUIWrapper(Cowl);
-
+    
             case 6:
                 return renderUIWrapper(PassengerFrontDoor);
-
+    
             case 7:
                 return renderUIWrapper(PassengerRoofRail);
-
+    
             case 8:
                 return renderUIWrapper(Roof);
-
+    
             case 9:
                 return renderUIWrapper(Sunroof);
-
+    
             case 10:
                 return renderUIWrapper(PassengerRearDoor);
-
+    
             case 11:
                 return renderUIWrapper(PassengerQuarterPanel);
-
+    
             case 12:
                 return renderUIWrapper(DeckLidGate);
-
+    
             case 13:
                 return renderUIWrapper(DriverQuarterPanel);
-
+    
             case 14:
                 return renderUIWrapper(DriverRearDoor);
-
+    
             case 15:
                 return renderUIWrapper(DriverRoofRail);
-
+    
             case 16:
                 return renderUIWrapper(DriverFrontDoor);
-
+    
             case 17:
                 return renderUIWrapper(DriverFender);
-
+    
             case 18:
                 return renderUIWrapper(Hood);
-
+    
             // Review VIN information
             case 19:
                 return (
@@ -667,11 +665,11 @@ const ClaimWrapper = (props) => {
                         {renderButtons()}
                     </>
                 );
-
+    
             // Odometer step - verify mileage at the end of the inspection
             case 20:
                 return renderUIWrapper(Odometer);
-
+    
             case 21:
                 return (
                     <>
@@ -680,7 +678,7 @@ const ClaimWrapper = (props) => {
                         {renderButtons()}
                     </>
                 );
-
+    
             // Final review and submission
             case 22:
                 return (
@@ -695,17 +693,17 @@ const ClaimWrapper = (props) => {
                         {renderButtons()}
                     </>
                 );
-
+    
             // Submission confirmation
             case 23:
                 return <ClaimSubmitted claimID={claimID} status={claim?.status} />;
-
+    
             // Fallback
             default:
                 return <ClaimSubmitted claimID={claimID} status={claim?.status} />;
         }
     };
-
+    
 
     return (
         <div id="main_stepper" className="main-stepper">
