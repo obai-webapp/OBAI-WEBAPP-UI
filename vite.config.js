@@ -1,8 +1,8 @@
+// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
     resolve: {
         alias: {
@@ -23,13 +23,14 @@ export default defineConfig({
         })
     ],
     build: {
-        outDir: 'dist', // This is what Render expects for a static site.
+        outDir: 'dist',
         sourcemap: false,
         minify: true,
-        assetsDir: 'assets', // Ensure assets are stored correctly.
+        assetsDir: 'assets',
     },
     server: {
-        port: 3000,
-        open: true
+        host: '0.0.0.0', // Allow access from your network
+        port: 3000,      // You can adjust this if needed
+        open: true       // Opens the app in a local browser by default
     }
 });

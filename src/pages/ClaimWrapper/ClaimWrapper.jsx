@@ -555,7 +555,8 @@ const ClaimWrapper = (props) => {
                 </button>
             )}
 
-            {activeStep !== screenList.length - 1 && !isShowNextButton() && (
+            {/* Conditionally render "Take Pic" and "Upload image" buttons only if not on the Dashboard VIN step */}
+            {activeStep !== 2 && activeStep !== screenList.length - 1 && !isShowNextButton() && (
                 <>
                     <button
                         className="lato-regular with-background mt-3"
@@ -578,6 +579,7 @@ const ClaimWrapper = (props) => {
             )}
         </div>
     );
+
 
     const renderUIWrapper = (Component) => (
         <>
@@ -665,7 +667,6 @@ const ClaimWrapper = (props) => {
                         {renderButtons()}
                     </>
                 );
-    
             // Odometer step - verify mileage at the end of the inspection
             case 20:
                 return renderUIWrapper(Odometer);
@@ -678,7 +679,6 @@ const ClaimWrapper = (props) => {
                         {renderButtons()}
                     </>
                 );
-    
             // Final review and submission
             case 22:
                 return (
@@ -693,17 +693,18 @@ const ClaimWrapper = (props) => {
                         {renderButtons()}
                     </>
                 );
-    
+
             // Submission confirmation
             case 23:
                 return <ClaimSubmitted claimID={claimID} status={claim?.status} />;
-    
+
             // Fallback
             default:
                 return <ClaimSubmitted claimID={claimID} status={claim?.status} />;
         }
     };
     
+
 
     return (
         <div id="main_stepper" className="main-stepper">
