@@ -1,36 +1,33 @@
 import React, { useState } from 'react';
 
 const VinScanner = () => {
-    const [uploadedImage, setUploadedImage] = useState(null);
-    const [vin, setVin] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [vinData, setVinData] = useState(null); // Store VIN and additional data
     const [errorMessage, setErrorMessage] = useState('');
     const [isProcessing, setIsProcessing] = useState(false);
 
-    // Handle file selection and convert to Base64
+    // Handle file selection
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             console.log('File selected:', file.name);
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const base64 = e.target.result.split(',')[1];
-                console.log('Base64 image data prepared');
-                setUploadedImage(base64); // Extract Base64 data
-            };
-            reader.readAsDataURL(file);
+            setSelectedFile(file);
         } else {
             console.warn('No file selected.');
+            setSelectedFile(null);
         }
     };
 
-    // Send the image directly to the single endpoint `/ocr-vin`
-    const processImage = async (base64Image) => {
-        console.log('Sending image to backend for processing...');
+    // Send the image file to the backend
+    const processImage = async (file) => {
+        console.log('Sending file to backend for processing...');
+        const formData = new FormData();
+        formData.append('file', file); // Key must match the backend expectation
+
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/vehicle/ocr-vin`, {
+            const response = await fetch('http://localhost:4000/vehicle/ocr-vin', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ imageBase64: base64Image }),
+                body: formData,
             });
 
             const data = await response.json();
@@ -38,7 +35,7 @@ const VinScanner = () => {
 
             if (response.ok && data.vin) {
                 console.log('VIN successfully extracted:', data.vin);
-                return data.vin;
+                return data; // Return the entire data object
             } else {
                 console.warn('Failed to extract VIN:', data.error || 'Unknown error');
                 setErrorMessage(data.error || 'Failed to extract VIN.');
@@ -54,10 +51,10 @@ const VinScanner = () => {
     // Main function to start processing
     const startProcessing = async () => {
         setErrorMessage('');
-        setVin('');
-        if (!uploadedImage) {
-            console.warn('No image uploaded.');
-            setErrorMessage('No image uploaded. Please upload an image first.');
+        setVinData(null); // Reset previous data
+        if (!selectedFile) {
+            console.warn('No file selected.');
+            setErrorMessage('No file selected. Please upload an image first.');
             return;
         }
 
@@ -65,18 +62,12 @@ const VinScanner = () => {
         setIsProcessing(true);
 
         try {
-            const detectedVin = await processImage(uploadedImage);
+            const detectedVinData = await processImage(selectedFile);
             setIsProcessing(false);
 
-            if (detectedVin) {
-                const userConfirmed = window.confirm(`Detected VIN: ${detectedVin}. Is this correct?`);
-                if (userConfirmed) {
-                    console.log(`User confirmed VIN: ${detectedVin}`);
-                    setVin(detectedVin);
-                } else {
-                    console.warn('User did not confirm the VIN.');
-                    setErrorMessage('The detected VIN was not confirmed. Please try again.');
-                }
+            if (detectedVinData) {
+                console.log('Full VIN data received:', detectedVinData);
+                setVinData(detectedVinData); // Directly set the VIN data without confirmation
             } else {
                 console.warn('VIN extraction failed.');
                 setErrorMessage('VIN extraction failed. Please try again.');
@@ -98,12 +89,21 @@ const VinScanner = () => {
                     onChange={handleFileChange}
                     disabled={isProcessing}
                 />
-                {uploadedImage && <p>Image uploaded. Ready to process.</p>}
-                <button onClick={startProcessing} disabled={isProcessing || !uploadedImage}>
+                {selectedFile && <p>File selected: {selectedFile.name}</p>}
+                <button onClick={startProcessing} disabled={isProcessing || !selectedFile}>
                     {isProcessing ? 'Processing...' : 'Analyze Image'}
                 </button>
             </div>
-            {vin && <p style={{ color: 'green' }}>Detected VIN: {vin}</p>}
+            {vinData && (
+                <div style={{ color: 'green' }}>
+                    <h2>VIN Details:</h2>
+                    <p>VIN: {vinData.vin}</p>
+                    <p>Make: {vinData.make}</p>
+                    <p>Model: {vinData.model}</p>
+                    <p>Year: {vinData.year}</p>
+                    <p>Message: {vinData.message}</p>
+                </div>
+            )}
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
     );
