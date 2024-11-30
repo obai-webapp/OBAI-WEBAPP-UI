@@ -245,7 +245,9 @@ const ClaimWrapper = (props) => {
     const skipStep = () => {
         const [...rest] = dentsInfoList;
 
-        const isIndexExist = rest?.length ? rest.findIndex((el) => el.title === screenList[getIndex]?.screenName) : -1;
+        const isIndexExist = rest?.length
+            ? rest.findIndex((el) => el.title === screenList[getIndex]?.screenName)
+            : -1;
 
         if (isIndexExist > -1) {
             rest[isIndexExist] = {
@@ -268,7 +270,7 @@ const ClaimWrapper = (props) => {
             });
         }
         setDentsInfoList(rest);
-        setActiveStep(getIndex + 1);
+        setActiveStep((prevStep) => prevStep + 1);
     };
 
     const goBack = () => {
@@ -549,6 +551,29 @@ const ClaimWrapper = (props) => {
                 Back
             </button>
 
+            <button
+                onClick={skipStep}
+                style={{
+                    position: 'absolute',
+                    right: '20px',
+                    top: '20px',
+                    backgroundColor: '#FF8C00', // Bright orange for visibility
+                    color: '#FFF', // White text for contrast
+                    border: 'none', // Remove default borders
+                    padding: '10px 15px', // Balanced padding for the button
+                    borderRadius: '25px', // Rounded corners
+                    fontSize: '14px', // Small, clean font size
+                    fontWeight: 'bold', // Make the text stand out
+                    cursor: 'pointer', // Pointer cursor for better UX
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Subtle shadow for depth
+                    transition: 'background-color 0.3s ease', // Smooth hover effect
+                }}
+                onMouseOver={(e) => (e.target.style.backgroundColor = '#E67E00')} // Darken on hover
+                onMouseOut={(e) => (e.target.style.backgroundColor = '#FF8C00')} // Revert on hover out
+            >
+                Skip
+            </button>
+
             {activeStep === screenList.length - 1 && (
                 <button className="lato-regular with-background mt-3" onClick={_submit}>
                     Submit
@@ -599,61 +624,61 @@ const ClaimWrapper = (props) => {
 
             case 0:
                 return <WelcomeScreen claim={claim} setActiveStep={setActiveStep} pageIndex={activeStep} />;
-    
+
             case 1:
                 return <HowItWorks setActiveStep={setActiveStep} pageIndex={activeStep} />;
-    
+
             case 2:
-                return renderUIWrapper(DashboardVin); 
-    
+                return renderUIWrapper(DashboardVin);
+
             case 3:
-                return renderUIWrapper(DoorJamVIN); 
-    
+                return renderUIWrapper(DoorJamVIN);
+
             case 4:
                 return renderUIWrapper(PassengerFender);
-    
+
             case 5:
                 return renderUIWrapper(Cowl);
-    
+
             case 6:
                 return renderUIWrapper(PassengerFrontDoor);
-    
+
             case 7:
                 return renderUIWrapper(PassengerRoofRail);
-    
+
             case 8:
                 return renderUIWrapper(Roof);
-    
+
             case 9:
                 return renderUIWrapper(Sunroof);
-    
+
             case 10:
                 return renderUIWrapper(PassengerRearDoor);
-    
+
             case 11:
                 return renderUIWrapper(PassengerQuarterPanel);
-    
+
             case 12:
                 return renderUIWrapper(DeckLidGate);
-    
+
             case 13:
                 return renderUIWrapper(DriverQuarterPanel);
-    
+
             case 14:
                 return renderUIWrapper(DriverRearDoor);
-    
+
             case 15:
                 return renderUIWrapper(DriverRoofRail);
-    
+
             case 16:
                 return renderUIWrapper(DriverFrontDoor);
-    
+
             case 17:
                 return renderUIWrapper(DriverFender);
-    
+
             case 18:
                 return renderUIWrapper(Hood);
-    
+
             // Review VIN information
             case 19:
                 return (
@@ -670,7 +695,7 @@ const ClaimWrapper = (props) => {
             // Odometer step - verify mileage at the end of the inspection
             case 20:
                 return renderUIWrapper(Odometer);
-    
+
             case 21:
                 return (
                     <>
@@ -703,7 +728,7 @@ const ClaimWrapper = (props) => {
                 return <ClaimSubmitted claimID={claimID} status={claim?.status} />;
         }
     };
-    
+
 
 
     return (
