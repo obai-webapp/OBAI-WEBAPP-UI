@@ -1,4 +1,4 @@
-@import '@constants/typography.scss';
+@use '@constants' as *;
 
 .landing {
     background-image: url('@images/car_dashboard.jpg');

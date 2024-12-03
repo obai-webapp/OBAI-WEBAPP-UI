@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+import sass from 'sass';
 
 export default defineConfig({
     resolve: {
@@ -14,7 +15,15 @@ export default defineConfig({
             '@logos': path.resolve('./src/assets/logos'),
             '@pages': path.resolve('./src/pages'),
             '@layout': path.resolve('./src/layout'),
-            '@redux': path.resolve('./src/redux'),
+            '@redux': path.resolve('./src/redux')
+        }
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                implementation: sass,
+                api: 'modern'
+            }
         }
     },
     plugins: [
@@ -26,11 +35,11 @@ export default defineConfig({
         outDir: 'dist',
         sourcemap: false,
         minify: true,
-        assetsDir: 'assets',
+        assetsDir: 'assets'
     },
     server: {
         host: '0.0.0.0', // Allow access from your network
-        port: 3000,      // You can adjust this if needed
-        open: true       // Opens the app in a local browser by default
+        port: 3000, // You can adjust this if needed
+        open: true // Opens the app in a local browser by default
     }
 });

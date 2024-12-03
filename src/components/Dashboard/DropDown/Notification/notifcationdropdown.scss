@@ -1,6 +1,6 @@
-@import '@constants/colors.scss';
-@import '@constants/typography.scss';
-@import '@constants/bootstrap-overrides.scss';
+@use '@constants/colors.scss';
+@use '@constants/typography.scss';
+@use '@constants/bootstrap-overrides.scss';
 
 .notification-dropdown {
     button {

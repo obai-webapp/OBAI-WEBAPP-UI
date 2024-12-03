@@ -1,6 +1,4 @@
-@import '@constants/colors.scss';
-@import '@constants/typography.scss';
-@import '@constants/media.scss';
+@use '@constants' as *;
 
 .quality-check {
     display: flex;

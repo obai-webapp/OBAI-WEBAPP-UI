@@ -1,6 +1,6 @@
-@import '@constants/colors.scss';
-@import '@constants/typography.scss';
-@import '@constants/media.scss';
+@use '@constants/colors.scss';
+@use '@constants/typography.scss';
+@use '@constants/media.scss';
 
 .modal-title {
     font-size: $text-color;

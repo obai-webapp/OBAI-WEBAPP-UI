@@ -1,5 +1,5 @@
-@import '../../../constants/colors.scss';
-@import '../../../constants/typography.scss';
+@use '@constants' as *;
+
 .sidebar {
     position: fixed;
     top: 0;
