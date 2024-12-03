@@ -1,5 +1,5 @@
-@import '../../constants/colors.scss';
-@import '@constants/typography.scss';
+@use '../../constants/colors.scss';
+@use '@constants/typography.scss';
 
 .view-claim-header {
     box-shadow: 0px 33px 33px 0px #dadcfa;

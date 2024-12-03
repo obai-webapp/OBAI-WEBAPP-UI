@@ -1,5 +1,4 @@
-@import '@constants/colors.scss';
-@import '@constants/typography.scss';
+@use '@constants' as *;
 
 .top-nav {
     width: 100%;

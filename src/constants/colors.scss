@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Color Palette
 $primary-color: #ff5f1e;                     // Primary color
 $primary-btn: linear-gradient(to right, #ffbb00, #ff8c00); // Action Gradient
@@ -16,7 +18,7 @@ $primary-border: #ffd900;                    // Secondary Gradient
 $text-color: #171717;                        // Dark color for inner text
 $heading-color: #171717;                     // Dark color for headings
 $link-color: $primary-color;                 // Link color
-$link-hover-color: adjust-color($link-color, $lightness: -10%); // Link hover color
+$link-hover-color: color.adjust($link-color, $lightness: -10%); // Link hover color
 
 // Background Colors
 $body-bg-color: #fffdf9;                     // Body background (Off-white)
@@ -81,5 +83,5 @@ $primary-color: #f25c22;                     // Primary brand color
 $secondary-color: #0fcba8;                   // Secondary brand color
 
 // Color Adjustments for Buttons
-$primary-btn-light: adjust-color($primary-color, $lightness: 10%); // Light variant of the primary color
-$primary-btn-dark: adjust-color($primary-color, $lightness: -10%);  // Dark variant of the primary color
+$primary-btn-light: color.adjust($primary-color, $lightness: 10%); // Light variant of the primary color
+$primary-btn-dark: color.adjust($primary-color, $lightness: -10%);  // Dark variant of the primary color

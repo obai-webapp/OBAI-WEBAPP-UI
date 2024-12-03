@@ -1,4 +1,4 @@
-@import '@constants/colors.scss';
+@use '@constants' as *;
 
 .how-it-works {
     display: flex;

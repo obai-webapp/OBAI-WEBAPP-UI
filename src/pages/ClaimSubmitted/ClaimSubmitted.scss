@@ -1,4 +1,4 @@
-@import '@constants/colors.scss';
+@use '@constants' as *;
 
 .claim-submit {
     display: flex;

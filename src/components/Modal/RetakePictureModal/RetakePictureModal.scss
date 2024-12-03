@@ -1,4 +1,4 @@
-@import '@constants/colors.scss';
+@use '@constants/colors.scss';
 
 .retake-modal {
     backdrop-filter: blur(10px);
@@ -22,7 +22,7 @@
                 rgba(242, 92, 34, 1)
             );
             display: flex;
-            justify-content: center;@import '@constants/colors.scss';
+            justify-content: center;@use '@constants/colors.scss';
 
             .retake-modal {
                 backdrop-filter: blur(10px);
