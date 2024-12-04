@@ -35,7 +35,7 @@
             font-size: 16px;
             font-family: 'Lato', sans-serif;
             font-weight: 400;
-            color: $primary-dark-color;
+            color: #ff5f1e;
             margin-left: 41px;
         }
 
@@ -44,13 +44,13 @@
             font-family: 'Lato', sans-serif;
             font-weight: 400;
             opacity: 0.7;
-            color: $primary-dark-color;
+            color: #ff5f1e;
         }
     }
 
     .download-btn {
         background: transparent;
-        color: $primary-dark-color; // Use your new brand primary dark color
+        color: #ff5f1e; // Use your new brand primary dark color
         font-size: 16px;
         border-radius: 36px;
         border: none;
