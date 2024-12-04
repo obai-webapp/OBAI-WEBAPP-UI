@@ -17,7 +17,7 @@ $primary-border: #ffd900;                    // Secondary Gradient
 // Text Colors
 $text-color: #171717;                        // Dark color for inner text
 $heading-color: #171717;                     // Dark color for headings
-$link-color: $primary-color;                 // Link color
+$link-color: #ff5f1e;                 // Link color
 $link-hover-color: color.adjust($link-color, $lightness: -10%); // Link hover color
 
 // Background Colors
@@ -25,8 +25,8 @@ $body-bg-color: #fffdf9;                     // Body background (Off-white)
 $container-bg-color: #f9f4e8;                // Container background (Light Off-white)
 
 // Button Colors
-$btn-primary-color: $primary-color;          // Primary button text color
-$btn-primary-bg-color: $primary-color;       // Primary button background color
+$btn-primary-color: #ff5f1e;          // Primary button text color
+$btn-primary-bg-color: #ff5f1e;       // Primary button background color
 $btn-secondary-color: $secondary-color;      // Secondary button text color
 $btn-secondary-bg-color: $secondary-color;   // Secondary button background color
 $btn-success-color: $success-color;          // Success button text color
@@ -40,13 +40,13 @@ $btn-danger-bg-color: $danger-color;         // Danger button background color
 
 // Form Colors
 $input-border-color: #ccc;                   // Input border color
-$input-focus-border-color: $primary-color;   // Input focus border color
+$input-focus-border-color: #ff5f1e;   // Input focus border color
 $input-placeholder-color: #999;              // Input placeholder color
 $input-disabled-bg-color: #f8f9fa;           // Input disabled background color
 $input-disabled-color: $secondary-color;     // Input disabled text color
 
 // Navbar Colors
-$navbar-bg-color: $primary-color;            // Navbar background color
+$navbar-bg-color: #ff5f1e;            // Navbar background color
 $navbar-text-color: #fff;                    // Navbar text color
 $navbar-link-color: #fff;                    // Navbar link color
 $navbar-link-hover-color: #eee;              // Navbar link hover color

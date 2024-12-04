@@ -1,4 +1,4 @@
-@use '../../constants/colors.scss';
+@use '@constants/colors.scss';
 @use '@constants/typography.scss';
 
 .view-claim-header {
@@ -6,7 +6,7 @@
 
     h4 {
         font-size: 33px;
-        color: $primary-color; // Use your new brand primary color
+        color: #ff5f1e; // Use your new brand primary color
         line-height: 64px;
         font-family: 'Lato', sans-serif;
         font-weight: 700;
@@ -22,7 +22,7 @@
 
         p {
             font-size: 40px;
-            color: $primary-color;
+            color: #ff5f1e;
             font-family: 'Lato', sans-serif;
             font-weight: 900;
             margin-left: 26px;
@@ -62,7 +62,7 @@
         svg { // Use svg selector for react-icons
             margin-left: 8px;
             width: 19px;
-            color: $primary-color; // Set icon color to match the new brand color
+            color: #ff5f1e; // Set icon color to match the new brand color
         }
     }
 }
