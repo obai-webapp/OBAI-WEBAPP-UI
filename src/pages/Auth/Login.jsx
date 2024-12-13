@@ -42,7 +42,7 @@ const Login = () => {
         <React.Fragment>
             <div className="login-section">
                 <div className="logo">
-                    <img className='obai-welcomelogo' src={logo} alt="logo" />
+                    <img className="obai-welcomelogo" src={logo} alt="logo" />
                 </div>
 
                 <div className="main-heading">
@@ -72,17 +72,21 @@ const Login = () => {
                                                         type={isShow ? 'text' : 'password'}
                                                     />
                                                 </div>
-                                                <div className="mt-3" style={{ display: 'flex', alignItems: 'center' }}>
-                                                    <input type="checkbox" checked={isShow} onChange={toggleIsShow} />
-                                                    <label style={{ marginLeft: '8px' }}>Show password</label>
-                                                </div>
-                                                <div className="mt-3">
+                                                <div className="password-options mt-3">
+                                                    <div className="show-password">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={isShow}
+                                                            onChange={toggleIsShow}
+                                                        />
+                                                        <label style={{ marginLeft: '8px' }}>Password</label>
+                                                    </div>
                                                     <Link
                                                         className="auth-link"
                                                         to="/forgot-password"
-                                                        style={{ color: '#FF8C00' }} 
+                                                        style={{ color: '#FF8C00' }}
                                                     >
-                                                        Forgot password?
+                                                        Forgot password
                                                     </Link>
                                                 </div>
                                                 <div className="login-btn">

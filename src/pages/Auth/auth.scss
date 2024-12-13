@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 60px;
+    margin-top: 30px;
 
     //handle responsive
     @include respond-to($large-screen) {
@@ -43,7 +43,7 @@
         font-size: 16px !important;
         padding: 13px !important;
         border: 1px solid #171717 !important; // Update to the new black color
-        background-color: #fffd9f; // Use a color from the palette
+        background-color: #fff; // Use a color from the palette
         color: #171717 !important; // Text color
         font-family: 'Red Hat Text', sans-serif;
         border-radius: 15px !important;
@@ -71,15 +71,15 @@
     }
 
     .login-btn {
-        margin-top: 80px;
+        margin-top: 50px;
 
         button {
             background: linear-gradient(180deg, #ffbb00, #ff8c00); // Tertiary gradient
             color: white;
-            font-size: 24px;
+            font-size: 18px;
             border-radius: 36px;
             border: none;
-            padding: 11px 0;
+            padding: 8px 0;
         }
     }
 
@@ -92,10 +92,10 @@
         .submit-button {
             background: linear-gradient(180deg, #ffbb00, #ff8c00); // Tertiary gradient
             color: white;
-            font-size: 24px;
+            font-size: 18px;
             border-radius: 36px;
             border: none;
-            padding: 11px 0;
+            padding: 9px 0;
         }
 
         .back-background {
@@ -118,10 +118,10 @@
         .submit-button {
             background: linear-gradient(180deg, #ffbb00, #ff8c00); // Tertiary gradient
             color: white;
-            font-size: 24px;
+            font-size: 18px;
             border-radius: 36px;
             border: none;
-            padding: 11px 0;
+            padding: 8px 0;
         }
 
         .without-background {
@@ -131,9 +131,10 @@
     }
 
     .contact-us-login {
-        margin-top: 42px;
+        margin-top: 22px;
+        margin-bottom: 20px;
         cursor: pointer;
-
+        
         p {
             color: #171717; // Primary text color
             font-size: 12px;
@@ -205,7 +206,7 @@
     input {
         width: 50px;
         margin-right: 20px;
-        background: #fffd9f; // Use a color from the palette
+        background: #ffffff; // Use a color from the palette
         border: 1px solid #171717;
         border-radius: 6px;
         min-height: 53px;
@@ -261,4 +262,10 @@
 
 .obai-welcomelogo {
     width: 6rem;
+}
+
+.password-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

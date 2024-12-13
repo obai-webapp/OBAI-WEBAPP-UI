@@ -6,46 +6,69 @@
     align-items: center;
     justify-content: space-evenly;
     min-height: 100vh;
+
     .for-width {
         width: 55%;
+
         @media screen and (max-width: 576px) {
             width: 87%;
         }
+
         @media only screen and (min-width: 576px) and (max-width: 768px) {
             width: 60%;
         }
+
         @media only screen and (min-width: 768px) and (max-width: 992px) {
             width: 55%;
         }
     }
+
     .banner-section {
         display: flex;
         justify-content: center;
         align-items: center;
+
         h2 {
             font-size: 48px;
-            color: #ff5f1e;
+            color: #171717;
             line-height: 64px;
             text-align: center;
+
+            // Adjust font size for smaller screens
+            @media screen and (max-width: 576px) {
+                font-size: 38px; // Reduced font size for mobile
+                line-height: 48px; // Adjusted line height for better readability
+            }
         }
+
         img {
             width: 250px;
             border-radius: 8px;
         }
     }
+
     .bullets {
         margin-left: 20px;
+
         p {
-            color: #ff5f1e;
+            color: #171717;
             font-size: 24px;
             font-family: 'Lato', sans-serif;
             font-weight: 400;
             opacity: 0.7;
+
+            // Adjust font size for smaller screens
+            @media screen and (max-width: 576px) {
+                font-size: 20px; // Reduced font size for mobile
+                line-height: 48px; // Adjusted line height for better readability
+            }
         }
+
         ul {
             margin-left: 30px;
+
             li {
-                color: #ff5f1e;
+                color: #171717;
                 font-size: 24px;
                 font-family: 'Lato', sans-serif;
                 font-weight: 400;

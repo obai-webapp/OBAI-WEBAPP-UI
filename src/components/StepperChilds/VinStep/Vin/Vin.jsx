@@ -79,7 +79,13 @@ const VinScanner = () => {
     const handleTakePicture = () => {
         setIsCameraActive(true);
         navigator.mediaDevices
-            .getUserMedia({ video: true })
+            .getUserMedia({
+                video: {
+                    facingMode: 'environment', // Use back camera
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 },
+                },
+            })
             .then((stream) => {
                 const video = videoRef.current;
                 if (video) {
@@ -126,8 +132,7 @@ const VinScanner = () => {
                 marginBottom: '20px',
                 color: '#FF8C00'
             }}>Dashboard VIN</h1>
-    
-            {/* Static Image */}
+
             {!capturedImage && !selectedFile && !isCameraActive && !vinData && (
                 <div>
                     <img
@@ -143,8 +148,7 @@ const VinScanner = () => {
                     />
                 </div>
             )}
-    
-            {/* Preview Uploaded or Captured Image */}
+
             {(capturedImage || selectedFile) && (
                 <div style={{ marginBottom: '20px' }}>
                     <img
@@ -161,7 +165,7 @@ const VinScanner = () => {
                     />
                 </div>
             )}
-    
+
             {!isCameraActive && !vinData && (
                 <div>
                     <button
@@ -182,7 +186,7 @@ const VinScanner = () => {
                     >
                         Take Picture
                     </button>
-    
+
                     <input
                         type="file"
                         accept="image/*"
@@ -201,7 +205,7 @@ const VinScanner = () => {
                             cursor: isProcessing ? 'not-allowed' : 'pointer',
                         }}
                     />
-    
+
                     <button
                         onClick={startProcessing}
                         disabled={isProcessing || (!selectedFile && !capturedImage)}
@@ -223,10 +227,10 @@ const VinScanner = () => {
                     </button>
                 </div>
             )}
-    
+
             {isCameraActive && (
                 <div style={{ marginBottom: '20px' }}>
-                    <video ref={videoRef} style={{ width: '100%', borderRadius: '10px' }}></video>
+                    <video ref={videoRef} style={{ width: '100%', height: '100vh', objectFit: 'cover' }}></video>
                     <button
                         onClick={captureImage}
                         style={{
@@ -236,9 +240,10 @@ const VinScanner = () => {
                             padding: '12px 24px',
                             borderRadius: '50px',
                             cursor: 'pointer',
-                            maxWidth: '280px',
-                            width: '100%',
-                            marginTop: '10px',
+                            position: 'absolute',
+                            bottom: '20px',
+                            left: '50%',
+                            transform: 'translateX(-50%)',
                             fontSize: '16px',
                             fontWeight: 'bold',
                         }}
@@ -247,9 +252,9 @@ const VinScanner = () => {
                     </button>
                 </div>
             )}
-    
+
             <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
-    
+
             {vinData && (
                 <div style={{
                     color: '#333',
@@ -275,7 +280,7 @@ const VinScanner = () => {
                     <p><strong>Message:</strong> {vinData.message}</p>
                 </div>
             )}
-    
+
             {errorMessage && (
                 <div style={{
                     color: '#E63946',
@@ -294,7 +299,6 @@ const VinScanner = () => {
             )}
         </div>
     );
-    
 };
 
 export default VinScanner;

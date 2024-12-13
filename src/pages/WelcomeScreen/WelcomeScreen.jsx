@@ -14,7 +14,7 @@ const WelcomeScreen = ({ setActiveStep, pageIndex, claim }) => {
                 <div className="welcome-text">
                     <div>
                         <h1 className="lato-bold ">
-                            Welcome, <br /> {claim?.vehicle?.ownerName?.split(' ')[0]}
+                            Welcome, <br /> {claim?.vehicle?.ownerName?.split(' ')[0]}!
                         </h1>
                     </div>
                     <div className="mt-5 lato-regular d-flex align-items-center justify-center">
