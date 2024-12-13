@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import VIN from "./../../../../assets/images/Finding your vehicles VIN - Obai.svg";
 
 const VinScanner = () => {
     const [selectedFile, setSelectedFile] = useState(null);
-    const [vinData, setVinData] = useState(null); // Store VIN and additional data
+    const [capturedImage, setCapturedImage] = useState(null);
+    const [vinData, setVinData] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [isProcessing, setIsProcessing] = useState(false);
+    const [isCameraActive, setIsCameraActive] = useState(false);
+    const videoRef = useRef(null);
+    const canvasRef = useRef(null);
 
-    // Handle file selection
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             setSelectedFile(file);
+            setCapturedImage(null); // Clear camera capture if a file is uploaded
         } else {
             setSelectedFile(null);
         }
     };
 
-    // Send the image file to the backend
     const processImage = async (file) => {
         const formData = new FormData();
-        formData.append('file', file); // Key must match the backend expectation
+        formData.append('file', file);
 
         try {
             const response = await fetch('http://localhost:4000/vehicle/ocr-vin', {
@@ -31,7 +34,7 @@ const VinScanner = () => {
             const data = await response.json();
 
             if (response.ok && data.vin) {
-                return data; // Return the entire data object
+                return data;
             } else {
                 setErrorMessage(data.error || 'Failed to extract VIN.');
                 return null;
@@ -42,25 +45,30 @@ const VinScanner = () => {
         }
     };
 
-    // Main function to start processing
     const startProcessing = async () => {
         setErrorMessage('');
-        setVinData(null); // Reset previous data
-        if (!selectedFile) {
-            setErrorMessage('No file selected. Please upload an image first.');
+        setVinData(null);
+
+        if (!selectedFile && !capturedImage) {
+            setErrorMessage('No file selected. Please upload or capture an image first.');
             return;
         }
 
         setIsProcessing(true);
 
         try {
-            const detectedVinData = await processImage(selectedFile);
+            const detectedVinData = await processImage(selectedFile || capturedImage);
             setIsProcessing(false);
 
-            if (detectedVinData) {
-                setVinData(detectedVinData); // Directly set the VIN data without confirmation
+            if (
+                detectedVinData &&
+                detectedVinData.make &&
+                detectedVinData.model &&
+                detectedVinData.year
+            ) {
+                setVinData(detectedVinData);
             } else {
-                setErrorMessage('VIN extraction failed. Please try again.');
+                setErrorMessage('Unable to extract complete VIN details. Please upload a clearer image.');
             }
         } catch (error) {
             setErrorMessage('An unexpected error occurred. Please try again.');
@@ -68,75 +76,198 @@ const VinScanner = () => {
         }
     };
 
+    const handleTakePicture = () => {
+        setIsCameraActive(true);
+        navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then((stream) => {
+                const video = videoRef.current;
+                if (video) {
+                    video.srcObject = stream;
+                    video.play();
+                }
+            })
+            .catch(() => {
+                setErrorMessage('Unable to access camera. Please try again.');
+            });
+    };
+
+    const captureImage = () => {
+        const canvas = canvasRef.current;
+        const video = videoRef.current;
+        if (canvas && video) {
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            video.srcObject.getTracks().forEach((track) => track.stop()); // Stop the camera
+
+            canvas.toBlob((blob) => {
+                const file = new File([blob], 'captured-image.jpg', { type: 'image/jpeg' });
+                setCapturedImage(file);
+                setSelectedFile(null); // Clear uploaded file if an image is captured
+                setIsCameraActive(false);
+            });
+        }
+    };
+
     return (
-        <div style={{ fontFamily: 'Arial, sans-serif', textAlign: 'center', padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-            {/* VIN Scanner Title */}
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '20px', color: '#333' }}>
-                VIN Scanner
-            </h1>
-
-            {/* Image Section */}
-            <div>
-                <img
-                    src={VIN}
-                    alt="Illustration of finding a vehicle's VIN"
-                    style={{ width: '100%', height: 'auto', maxHeight: '200px', margin: '20px 0', objectFit: 'contain' }}
-                />
-            </div>
-
-            {/* File Upload and Analyze Button */}
-            <div style={{ marginBottom: '20px' }}>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    disabled={isProcessing}
-                    aria-label="Upload VIN image"
-                    style={{
-                        display: 'block',
-                        margin: '10px auto',
-                        padding: '10px',
-                        borderRadius: '10px',
-                        border: '1px solid #d4d4d4',
-                        cursor: isProcessing ? 'not-allowed' : 'pointer',
-                    }}
-                />
-                <button
-                    onClick={startProcessing}
-                    disabled={isProcessing || !selectedFile}
-                    style={{
-                        backgroundColor: isProcessing || !selectedFile ? '#E0E0E0' : '#FF8C00', // Adjust colors to match your scheme
-                        color: isProcessing || !selectedFile ? '#A0A0A0' : '#FFF',
-                        border: 'none',
-                        padding: '12px 24px',
-                        borderRadius: '8px',
-                        cursor: isProcessing || !selectedFile ? 'not-allowed' : 'pointer',
-                        marginTop: '20px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        transition: 'background-color 0.3s ease',
-                        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-                    }}
-                    aria-label="Analyze VIN image"
-                    onMouseOver={(e) => {
-                        if (!isProcessing && selectedFile) {
-                            e.target.style.backgroundColor = '#E67E00';
-                        }
-                    }}
-                    onMouseOut={(e) => {
-                        if (!isProcessing && selectedFile) {
-                            e.target.style.backgroundColor = '#FF8C00';
-                        }
-                    }}
-                >
-                    {isProcessing ? 'Processing...' : 'Analyze Image'}
-                </button>
-            </div>
-
-            {/* VIN Data Section */}
+        <div style={{
+            fontFamily: 'Arial, sans-serif',
+            color: '#333',
+            textAlign: 'center',
+            padding: '20px',
+            maxWidth: '600px',
+            margin: '20px auto',
+        }}>
+            <h1 style={{
+                fontSize: '2rem',
+                fontWeight: 'bold',
+                marginBottom: '20px',
+                color: '#FF8C00'
+            }}>Dashboard VIN</h1>
+    
+            {/* Static Image */}
+            {!capturedImage && !selectedFile && !isCameraActive && !vinData && (
+                <div>
+                    <img
+                        src={VIN}
+                        alt="Illustration of finding a vehicle's VIN"
+                        style={{
+                            width: '100%',
+                            maxHeight: '200px',
+                            marginBottom: '20px',
+                            borderRadius: '10px',
+                            objectFit: 'contain'
+                        }}
+                    />
+                </div>
+            )}
+    
+            {/* Preview Uploaded or Captured Image */}
+            {(capturedImage || selectedFile) && (
+                <div style={{ marginBottom: '20px' }}>
+                    <img
+                        src={capturedImage ? URL.createObjectURL(capturedImage) : URL.createObjectURL(selectedFile)}
+                        alt="Preview"
+                        style={{
+                            width: '100%',
+                            maxHeight: '200px',
+                            marginBottom: '20px',
+                            borderRadius: '10px',
+                            objectFit: 'contain',
+                            border: '1px solid #d4d4d4',
+                        }}
+                    />
+                </div>
+            )}
+    
+            {!isCameraActive && !vinData && (
+                <div>
+                    <button
+                        onClick={handleTakePicture}
+                        style={{
+                            backgroundColor: '#FF8C00',
+                            color: '#FFF',
+                            border: 'none',
+                            padding: '12px 24px',
+                            borderRadius: '50px',
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            maxWidth: '280px',
+                            width: '100%',
+                            margin: '10px auto',
+                        }}
+                    >
+                        Take Picture
+                    </button>
+    
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        disabled={isProcessing}
+                        style={{
+                            display: 'block',
+                            maxWidth: '280px',
+                            width: '100%',
+                            margin: '10px auto',
+                            padding: '10px',
+                            borderRadius: '50px',
+                            backgroundColor: '#FFFFFF',
+                            border: '1px solid #d4d4d4',
+                            color: '#333',
+                            cursor: isProcessing ? 'not-allowed' : 'pointer',
+                        }}
+                    />
+    
+                    <button
+                        onClick={startProcessing}
+                        disabled={isProcessing || (!selectedFile && !capturedImage)}
+                        style={{
+                            backgroundColor: isProcessing || (!selectedFile && !capturedImage) ? '#E0E0E0' : '#FF8C00',
+                            color: isProcessing || (!selectedFile && !capturedImage) ? '#888' : '#FFF',
+                            border: 'none',
+                            padding: '12px 24px',
+                            borderRadius: '50px',
+                            cursor: isProcessing || (!selectedFile && !capturedImage) ? 'not-allowed' : 'pointer',
+                            maxWidth: '280px',
+                            width: '100%',
+                            margin: '10px auto',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        {isProcessing ? 'Processing...' : 'Analyze Image'}
+                    </button>
+                </div>
+            )}
+    
+            {isCameraActive && (
+                <div style={{ marginBottom: '20px' }}>
+                    <video ref={videoRef} style={{ width: '100%', borderRadius: '10px' }}></video>
+                    <button
+                        onClick={captureImage}
+                        style={{
+                            backgroundColor: '#FF8C00',
+                            color: '#FFF',
+                            border: 'none',
+                            padding: '12px 24px',
+                            borderRadius: '50px',
+                            cursor: 'pointer',
+                            maxWidth: '280px',
+                            width: '100%',
+                            marginTop: '10px',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        Capture Image
+                    </button>
+                </div>
+            )}
+    
+            <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
+    
             {vinData && (
-                <div style={{ color: '#28A745', marginTop: '20px', textAlign: 'center', border: '1px solid #d4d4d4', padding: '20px', borderRadius: '8px' }}>
-                    <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '10px' }}>VIN Details:</h2>
+                <div style={{
+                    color: '#333',
+                    marginTop: '20px',
+                    textAlign: 'center',
+                    border: '1px solid #e0e0e0',
+                    padding: '20px',
+                    borderRadius: '5px',
+                    backgroundColor: '#FFFFFF',
+                    width: '50%',
+                    margin: '20px auto',
+                }}>
+                    <h2 style={{
+                        fontSize: '1.5rem',
+                        fontWeight: 'bold',
+                        marginBottom: '10px',
+                        color: '#FF8C00'
+                    }}>VIN Details</h2>
                     <p><strong>VIN:</strong> {vinData.vin}</p>
                     <p><strong>Make:</strong> {vinData.make}</p>
                     <p><strong>Model:</strong> {vinData.model}</p>
@@ -144,11 +275,26 @@ const VinScanner = () => {
                     <p><strong>Message:</strong> {vinData.message}</p>
                 </div>
             )}
-
-            {/* Error Message */}
-            {errorMessage && <p style={{ color: '#E63946', marginTop: '20px' }}>{errorMessage}</p>}
+    
+            {errorMessage && (
+                <div style={{
+                    color: '#E63946',
+                    marginTop: '20px',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                    padding: '10px',
+                    border: '1px solid #e63946',
+                    borderRadius: '5px',
+                    backgroundColor: '#FFEEEE',
+                    width: '50%',
+                    margin: '20px auto',
+                }}>
+                    {errorMessage}
+                </div>
+            )}
         </div>
     );
+    
 };
 
 export default VinScanner;

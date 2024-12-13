@@ -729,8 +729,6 @@ const ClaimWrapper = (props) => {
         }
     };
 
-
-
     return (
         <div id="main_stepper" className="main-stepper">
             {isLoading ? (
