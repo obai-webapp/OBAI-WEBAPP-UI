@@ -26,7 +26,7 @@
                 font-family: $font-secondary;
                 font-weight: 700;
                 font-style: normal;
-                color: #101c85;
+                color: #ff5f1e; // Updated to new primary color
             }
 
             & > p {
@@ -40,6 +40,38 @@
 
                 & > p {
                     font-size: 1.1rem;
+                }
+            }
+        }
+
+        &-login {
+            margin-top: 1.5rem;
+            text-align: center;
+
+            .login-button {
+                background-color: #ff5f1e; // Updated to new primary color
+                color: white;
+                padding: 0.5rem 1.5rem;
+                font-size: 1rem;
+                font-family: $font-secondary;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+
+                &:hover {
+                    background-color: darken(#ff5f1e, 10%); // Slightly darker shade on hover
+                    transform: scale(1.05); // Subtle zoom effect
+                }
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 3px rgba(255, 95, 30, 0.5); // Focus ring matches new primary color
+                }
+
+                @media screen and (max-width: 750px) {
+                    font-size: 0.9rem;
+                    padding: 0.6rem 1.2rem;
                 }
             }
         }

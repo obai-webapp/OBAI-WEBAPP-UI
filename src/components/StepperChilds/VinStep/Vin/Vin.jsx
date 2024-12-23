@@ -10,6 +10,7 @@ const VinScanner = () => {
     const [isCameraActive, setIsCameraActive] = useState(false);
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
+    const fileInputRef = useRef(null);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -19,6 +20,10 @@ const VinScanner = () => {
         } else {
             setSelectedFile(null);
         }
+    };
+
+    const handleFileUpload = () => {
+        fileInputRef.current.click();
     };
 
     const processImage = async (file) => {
@@ -187,24 +192,36 @@ const VinScanner = () => {
                         Take Picture
                     </button>
 
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        disabled={isProcessing}
+                    <br />
+
+                    <button
+                        onClick={handleFileUpload}
                         style={{
-                            display: 'block',
+                            background: 'linear-gradient(to right, #FF8008, #FFC837)', // Gradient background
+                            color: '#FFF',
+                            border: 'none',
+                            padding: '12px 24px',
+                            borderRadius: '50px',
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
                             maxWidth: '280px',
                             width: '100%',
                             margin: '10px auto',
-                            padding: '10px',
-                            borderRadius: '50px',
-                            backgroundColor: '#FFFFFF',
-                            border: '1px solid #d4d4d4',
-                            color: '#333',
-                            cursor: isProcessing ? 'not-allowed' : 'pointer',
                         }}
+                    >
+                        Upload Image
+                    </button>
+
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }} // Hides the file input
                     />
+
+                    <br />
 
                     <button
                         onClick={startProcessing}
