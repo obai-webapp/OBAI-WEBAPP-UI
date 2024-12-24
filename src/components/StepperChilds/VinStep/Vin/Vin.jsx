@@ -12,11 +12,31 @@ const VinScanner = () => {
     const canvasRef = useRef(null);
     const fileInputRef = useRef(null);
 
-    const handleFileChange = (event) => {
+    const handleFileChange = async (event) => {
         const file = event.target.files[0];
+
+        // Supported MIME types
+        const supportedMimeTypes = ["image/jpeg", "image/png", "image/bmp", "image/gif"];
+
         if (file) {
-            setSelectedFile(file);
-            setCapturedImage(null); // Clear camera capture if a file is uploaded
+            if (supportedMimeTypes.includes(file.type)) {
+                setSelectedFile(file);
+                setCapturedImage(null); // Clear camera capture if a file is uploaded
+            } else if (file.type === "image/heic" || file.type === "image/heif") {
+                // Convert HEIC/HEIF to JPG
+                try {
+                    const heic2any = (await import("heic2any")).default; // Dynamically import the library
+                    const convertedBlob = await heic2any({ blob: file, toType: "image/jpeg" });
+                    const convertedFile = new File([convertedBlob], `${file.name.split(".")[0]}.jpg`, { type: "image/jpeg" });
+                    setSelectedFile(convertedFile);
+                    setCapturedImage(null);
+                } catch (error) {
+                    console.error("Error converting HEIC to JPEG:", error);
+                    setErrorMessage("Failed to process HEIC image. Please try again.");
+                }
+            } else {
+                setErrorMessage("Unsupported file type. Please upload a JPEG, PNG, BMP, or GIF image.");
+            }
         } else {
             setSelectedFile(null);
         }
@@ -27,17 +47,19 @@ const VinScanner = () => {
     };
 
     const processImage = async (file) => {
+        console.log("File type before sending to backend:", file.type); // Log the file type here
+    
         const formData = new FormData();
         formData.append('file', file);
-
+    
         try {
             const response = await fetch('http://localhost:4000/vehicle/ocr-vin', {
                 method: 'POST',
                 body: formData,
             });
-
+    
             const data = await response.json();
-
+    
             if (response.ok && data.vin) {
                 return data;
             } else {
@@ -49,6 +71,7 @@ const VinScanner = () => {
             return null;
         }
     };
+    
 
     const startProcessing = async () => {
         setErrorMessage('');
@@ -123,173 +146,36 @@ const VinScanner = () => {
     };
 
     return (
-        <div style={{
-            fontFamily: 'Arial, sans-serif',
-            color: '#333',
-            textAlign: 'center',
-            padding: '20px',
-            maxWidth: '600px',
-            margin: '20px auto',
-        }}>
-            <h1 style={{
-                fontSize: '2rem',
-                fontWeight: 'bold',
-                marginBottom: '20px',
-                color: '#FF8C00'
-            }}>Dashboard VIN</h1>
+        <div style={{ fontFamily: 'Arial, sans-serif', color: '#333', textAlign: 'center', padding: '20px', maxWidth: '600px', margin: '20px auto' }}>
+            <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '20px', color: '#FF8C00' }}>Dashboard VIN</h1>
 
             {!capturedImage && !selectedFile && !isCameraActive && !vinData && (
                 <div>
-                    <img
-                        src={VIN}
-                        alt="Illustration of finding a vehicle's VIN"
-                        style={{
-                            width: '100%',
-                            maxHeight: '200px',
-                            marginBottom: '20px',
-                            borderRadius: '10px',
-                            objectFit: 'contain'
-                        }}
-                    />
+                    <img src={VIN} alt="VIN illustration" style={{ width: '100%', maxHeight: '200px', marginBottom: '20px', borderRadius: '10px', objectFit: 'contain' }} />
                 </div>
             )}
 
             {(capturedImage || selectedFile) && (
                 <div style={{ marginBottom: '20px' }}>
-                    <img
-                        src={capturedImage ? URL.createObjectURL(capturedImage) : URL.createObjectURL(selectedFile)}
-                        alt="Preview"
-                        style={{
-                            width: '100%',
-                            maxHeight: '200px',
-                            marginBottom: '20px',
-                            borderRadius: '10px',
-                            objectFit: 'contain',
-                            border: '1px solid #d4d4d4',
-                        }}
-                    />
+                    <img src={capturedImage ? URL.createObjectURL(capturedImage) : URL.createObjectURL(selectedFile)} alt="Preview" style={{ width: '100%', maxHeight: '200px', marginBottom: '20px', borderRadius: '10px', objectFit: 'contain', border: '1px solid #d4d4d4' }} />
                 </div>
             )}
 
             {!isCameraActive && !vinData && (
                 <div>
-                    <button
-                        onClick={handleTakePicture}
-                        style={{
-                            backgroundColor: '#FF8C00',
-                            color: '#FFF',
-                            border: 'none',
-                            padding: '12px 24px',
-                            borderRadius: '50px',
-                            cursor: 'pointer',
-                            fontSize: '16px',
-                            fontWeight: 'bold',
-                            maxWidth: '280px',
-                            width: '100%',
-                            margin: '10px auto',
-                        }}
-                    >
-                        Take Picture
-                    </button>
-
+                    <button onClick={handleTakePicture} style={{ backgroundColor: '#FF8C00', color: '#FFF', border: 'none', padding: '12px 24px', borderRadius: '50px', cursor: 'pointer', fontSize: '16px', fontWeight: 'bold', maxWidth: '280px', width: '100%', margin: '10px auto' }}>Take Picture</button>
                     <br />
-
-                    <button
-                        onClick={handleFileUpload}
-                        style={{
-                            background: 'linear-gradient(to right, #FF8008, #FFC837)', // Gradient background
-                            color: '#FFF',
-                            border: 'none',
-                            padding: '12px 24px',
-                            borderRadius: '50px',
-                            cursor: 'pointer',
-                            fontSize: '16px',
-                            fontWeight: 'bold',
-                            maxWidth: '280px',
-                            width: '100%',
-                            margin: '10px auto',
-                        }}
-                    >
-                        Upload Image
-                    </button>
-
-                    <input
-                        type="file"
-                        ref={fileInputRef}
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        style={{ display: 'none' }} // Hides the file input
-                    />
-
+                    <button onClick={handleFileUpload} style={{ background: 'linear-gradient(to right, #FF8008, #FFC837)', color: '#FFF', border: 'none', padding: '12px 24px', borderRadius: '50px', cursor: 'pointer', fontSize: '16px', fontWeight: 'bold', maxWidth: '280px', width: '100%', margin: '10px auto' }}>Upload Image</button>
+                    <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
                     <br />
-
-                    <button
-                        onClick={startProcessing}
-                        disabled={isProcessing || (!selectedFile && !capturedImage)}
-                        style={{
-                            backgroundColor: isProcessing || (!selectedFile && !capturedImage) ? '#E0E0E0' : '#FF8C00',
-                            color: isProcessing || (!selectedFile && !capturedImage) ? '#888' : '#FFF',
-                            border: 'none',
-                            padding: '12px 24px',
-                            borderRadius: '50px',
-                            cursor: isProcessing || (!selectedFile && !capturedImage) ? 'not-allowed' : 'pointer',
-                            maxWidth: '280px',
-                            width: '100%',
-                            margin: '10px auto',
-                            fontSize: '16px',
-                            fontWeight: 'bold',
-                        }}
-                    >
-                        {isProcessing ? 'Processing...' : 'Analyze Image'}
-                    </button>
+                    <button onClick={startProcessing} disabled={isProcessing || (!selectedFile && !capturedImage)} style={{ backgroundColor: isProcessing || (!selectedFile && !capturedImage) ? '#E0E0E0' : '#FF8C00', color: isProcessing || (!selectedFile && !capturedImage) ? '#888' : '#FFF', border: 'none', padding: '12px 24px', borderRadius: '50px', cursor: isProcessing || (!selectedFile && !capturedImage) ? 'not-allowed' : 'pointer', maxWidth: '280px', width: '100%', margin: '10px auto', fontSize: '16px', fontWeight: 'bold' }}>{isProcessing ? 'Processing...' : 'Analyze Image'}</button>
                 </div>
             )}
-
-            {isCameraActive && (
-                <div style={{ marginBottom: '20px' }}>
-                    <video ref={videoRef} style={{ width: '100%', height: '100vh', objectFit: 'cover' }}></video>
-                    <button
-                        onClick={captureImage}
-                        style={{
-                            backgroundColor: '#FF8C00',
-                            color: '#FFF',
-                            border: 'none',
-                            padding: '12px 24px',
-                            borderRadius: '50px',
-                            cursor: 'pointer',
-                            position: 'absolute',
-                            bottom: '20px',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            fontSize: '16px',
-                            fontWeight: 'bold',
-                        }}
-                    >
-                        Capture Image
-                    </button>
-                </div>
-            )}
-
-            <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
+            
 
             {vinData && (
-                <div style={{
-                    color: '#333',
-                    marginTop: '20px',
-                    textAlign: 'center',
-                    border: '1px solid #e0e0e0',
-                    padding: '20px',
-                    borderRadius: '5px',
-                    backgroundColor: '#FFFFFF',
-                    width: '50%',
-                    margin: '20px auto',
-                }}>
-                    <h2 style={{
-                        fontSize: '1.5rem',
-                        fontWeight: 'bold',
-                        marginBottom: '10px',
-                        color: '#FF8C00'
-                    }}>VIN Details</h2>
+                <div style={{ color: '#333', marginTop: '20px', textAlign: 'center', border: '1px solid #e0e0e0', padding: '20px', borderRadius: '5px', backgroundColor: '#FFFFFF', width: '50%', margin: '20px auto' }}>
+                    <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '10px', color: '#FF8C00' }}>VIN Details</h2>
                     <p><strong>VIN:</strong> {vinData.vin}</p>
                     <p><strong>Make:</strong> {vinData.make}</p>
                     <p><strong>Model:</strong> {vinData.model}</p>
@@ -299,20 +185,7 @@ const VinScanner = () => {
             )}
 
             {errorMessage && (
-                <div style={{
-                    color: '#E63946',
-                    marginTop: '20px',
-                    fontWeight: 'bold',
-                    textAlign: 'center',
-                    padding: '10px',
-                    border: '1px solid #e63946',
-                    borderRadius: '5px',
-                    backgroundColor: '#FFEEEE',
-                    width: '50%',
-                    margin: '20px auto',
-                }}>
-                    {errorMessage}
-                </div>
+                <div style={{ color: '#E63946', marginTop: '20px', fontWeight: 'bold', textAlign: 'center', padding: '10px', border: '1px solid #e63946', borderRadius: '5px', backgroundColor: '#FFEEEE', width: '50%', margin: '20px auto' }}>{errorMessage}</div>
             )}
         </div>
     );
