@@ -36,12 +36,11 @@ const Topbar = () => {
                 img.src = event.target.result;
                 img.onload = () => {
                     const canvas = document.createElement('canvas');
-                    const MAX_WIDTH = 300; // Set maximum width
-                    const MAX_HEIGHT = 100; // Set maximum height
+                    const MAX_WIDTH = 300;
+                    const MAX_HEIGHT = 100;
                     let width = img.width;
                     let height = img.height;
 
-                    // Calculate new dimensions
                     if (width > height) {
                         if (width > MAX_WIDTH) {
                             height *= MAX_WIDTH / width;
@@ -71,9 +70,7 @@ const Topbar = () => {
         const file = event.target.files[0];
         if (file) {
             try {
-                // Check file size before compression (optional)
                 if (file.size > 5000000) {
-                    // 5MB
                     alert('File is too large. Please select a smaller image.');
                     return;
                 }
@@ -91,7 +88,7 @@ const Topbar = () => {
                 alert('Error processing image. Please try again.');
             }
         }
-        setShow(false); // Close dropdown after upload
+        setShow(false);
     };
     useEffect(() => {
         const handleResize = () => {
