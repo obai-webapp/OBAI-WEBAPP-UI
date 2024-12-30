@@ -1,9 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import for navigation
+import { useNavigate } from 'react-router-dom'; 
 import './landingPage.scss';
 
 const LandingPage = () => {
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate(); 
 
     return (
         <div className="landing">
@@ -20,11 +20,10 @@ const LandingPage = () => {
                         assistance.
                     </p>
 
-                    {/* Login Section */}
                     <div className="landing_wrapper-login">
                         <button
-                            className="login-button" // Optional: Style the button using your CSS
-                            onClick={() => navigate('/admin-login')} // Navigate to /admin-login
+                            className="login-button" 
+                            onClick={() => navigate('/admin-login')} 
                         >
                             Login
                         </button>
