@@ -541,7 +541,7 @@ const ClaimWrapper = (props) => {
                 type="button"
                 style={{
                     backgroundColor: 'transparent',
-                    color: '#FF8C00', // Tertiary color for Back button
+                    color: '#FF8C00', 
                     border: '2px solid #FF8C00',
                     padding: '10px',
                     borderRadius: '36px',
@@ -558,19 +558,19 @@ const ClaimWrapper = (props) => {
                     position: 'absolute',
                     right: '20px',
                     top: '20px',
-                    backgroundColor: '#FF8C00', // Bright orange for visibility
-                    color: '#FFF', // White text for contrast
-                    border: 'none', // Remove default borders
-                    padding: '10px 15px', // Balanced padding for the button
-                    borderRadius: '25px', // Rounded corners
-                    fontSize: '14px', // Small, clean font size
-                    fontWeight: 'bold', // Make the text stand out
-                    cursor: 'pointer', // Pointer cursor for better UX
-                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Subtle shadow for depth
-                    transition: 'background-color 0.3s ease', // Smooth hover effect
+                    backgroundColor: '#FF8C00', 
+                    color: '#FFF', 
+                    border: 'none', 
+                    padding: '10px 15px', 
+                    borderRadius: '25px', 
+                    fontSize: '14px', 
+                    fontWeight: 'bold', 
+                    cursor: 'pointer', 
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', 
+                    transition: 'background-color 0.3s ease',
                 }}
-                onMouseOver={(e) => (e.target.style.backgroundColor = '#E67E00')} // Darken on hover
-                onMouseOut={(e) => (e.target.style.backgroundColor = '#FF8C00')} // Revert on hover out
+                onMouseOver={(e) => (e.target.style.backgroundColor = '#E67E00')}
+                onMouseOut={(e) => (e.target.style.backgroundColor = '#FF8C00')} 
             >
                 Skip
             </button>
@@ -581,7 +581,6 @@ const ClaimWrapper = (props) => {
                 </button>
             )}
     
-            {/* Conditionally hide "Take Pic" and "Upload image" buttons for the Dashboard VIN step */}
             {activeStep !== 17 && activeStep !== screenList.length - 1 && (
                 <>
                     <button
