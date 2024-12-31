@@ -8,7 +8,7 @@
         "build": "vite build",
         "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
-        "prepare": "husky install && npx husky add .husky/pre-commit \"npx lint-staged\"",
+        "prepare": "husky",
         "lint:fix": "eslint src --ext js,jsx --fix"
     },
     "dependencies": {
@@ -68,8 +68,12 @@
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^6.6.2",
         "@testing-library/react": "^16.0.1",
+        "@types/node": "^22.10.2",
         "@types/react": "^18.2.45",
         "@types/react-dom": "^18.2.18",
+        "@types/redux-logger": "^3.0.13",
+        "@typescript-eslint/eslint-plugin": "^8.19.0",
+        "@typescript-eslint/parser": "^8.19.0",
         "@vitejs/plugin-react-swc": "^3.5.0",
         "eslint": "^8.56.0",
         "eslint-config-prettier": "^9.1.0",
@@ -85,12 +89,13 @@
         "lint-staged": "^15.2.0",
         "prettier": "^3.1.1",
         "sass": "^1.81.0",
+        "typescript": "^5.7.2",
         "vite": "^5.4.11"
     },
     "lint-staged": {
-        "*.{js,jsx}": [
-            "eslint --cache --fix",
-            "npx prettier --write"
+        "*.{js,jsx,ts,tsx}": [
+            "prettier --write",
+            "eslint --fix"
         ]
     }
 }

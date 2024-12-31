@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 import './auth.scss';
 import { toast } from 'react-toastify';
 import axiosWrapper from '../../utils/api';
-import { addIdForOtpUser } from '../../redux/auth/auth_slice';
+import { addIdForOtpUser } from '../../redux/auth/authSlice';
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ const ForgotPassword = () => {
         try {
             const { data } = await axiosWrapper('post', `${import.meta.env.VITE_API_URL}/api/admin/forgot`, values);
             dispatch(addIdForOtpUser({ data }));
-            navigate(`/otp-screen/`);
+            navigate('/otp-screen/');
             setSubmitting(false);
             toast.success('OTP sent to email successfully');
         } catch (error) {

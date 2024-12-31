@@ -15,7 +15,8 @@ export default defineConfig({
             '@logos': path.resolve('./src/assets/logos'),
             '@pages': path.resolve('./src/pages'),
             '@layout': path.resolve('./src/layout'),
-            '@redux': path.resolve('./src/redux')
+            '@redux': path.resolve('./src/redux'),
+            '@types': path.resolve('./src/types')
         }
     },
     css: {

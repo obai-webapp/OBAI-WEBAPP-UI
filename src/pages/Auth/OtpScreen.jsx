@@ -7,7 +7,7 @@ import OtpInput from './OtpComponent';
 import logo from '@images/logo.svg';
 import axiosWrapper from '../../utils/api';
 import { toast } from 'react-toastify';
-import { addIdForOtpUser } from '../../redux/auth/auth_slice';
+import { addIdForOtpUser } from '../../redux/auth/authSlice';
 
 const OtpScreen = () => {
     const navigate = useNavigate();

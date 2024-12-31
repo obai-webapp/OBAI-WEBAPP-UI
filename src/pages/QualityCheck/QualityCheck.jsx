@@ -12,7 +12,7 @@ import {
     UpdateSelectedQualityDents,
     UpdateSelectedQualitySizes,
     addAnotherImage
-} from '../../redux/cars_images/cars_images_slice';
+} from '../../redux/carImages';
 import edit from '@images/edit.png';
 import EditMultipleImageModal from '../../components/Modal/EditMultipleImageModal/EditMultipleImageModal';
 import { dentSize, dentsData } from '../../helpers/helpers';

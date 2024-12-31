@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import Camera from 'react-html5-camera-photo';
 import { useDispatch } from 'react-redux';
-import { UpdateCapturedImage, editVinReviewedImage } from '../../../redux/cars_images/cars_images_slice';
+import { UpdateCapturedImage, editVinReviewedImage } from '../../../redux/carImages';
 
 const EditImageModal = ({ selectedImage, showRetakeModal, closeRetakeModal }) => {
     const dispatch = useDispatch();

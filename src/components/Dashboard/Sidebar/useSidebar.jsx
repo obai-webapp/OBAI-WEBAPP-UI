@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import sideBarItems from './sidebarData';
-import { changeLink } from '@redux/sidebar/sidebarSlice';
+import { changeLink } from '@/src/redux/sidebar';
 
 const useSideBar = () => {
     const dispatch = useDispatch();

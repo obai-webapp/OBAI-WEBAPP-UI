@@ -1,19 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, Reducer } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createLogger } from 'redux-logger';
-import auth from './auth/auth_slice';
-import themeReducer from './theme/theme_slice';
-import sidebarReducer from '../redux/sidebar/sidebarSlice';
-import cars_images_slice from './cars_images/cars_images_slice';
-
-// Combine all the slices into a single root reducer
-const rootReducer = combineReducers({
-    auth,
-    theme: themeReducer,
-    cars_images: cars_images_slice,
-    activeSidebarItem: sidebarReducer
-});
+import { authSlice } from './auth/authSlice';
+import themeReducer from './theme/themeSlice';
+import sidebarReducer from './sidebar';
+import carImagesReducer from './carImages';
 
 const persistConfig = {
     key: 'root',
@@ -22,12 +14,19 @@ const persistConfig = {
     blacklist: ['cars_images']
 };
 
+const rootReducer = combineReducers({
+    auth: authSlice.reducer,
+    theme: themeReducer,
+    cars_images: carImagesReducer,
+    activeSidebarItem: sidebarReducer
+});
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const loggerMiddleware = createLogger();
-const middleware = import.meta.env.NODE_ENV !== 'production' ? [loggerMiddleware] : [];
+const isDevelopment = process.env.NODE_ENV !== 'production';
+const middleware = isDevelopment ? [createLogger()] : [];
 
-const store = configureStore({
+export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
@@ -35,9 +34,11 @@ const store = configureStore({
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
             }
         }).concat(middleware),
-    devTools: import.meta.env.NODE_ENV !== 'production'
+    devTools: isDevelopment
 });
 
+export type AppDispatch = typeof store.dispatch;
+export type AppStore = typeof store;
 export const persistor = persistStore(store);
 
 export default store;

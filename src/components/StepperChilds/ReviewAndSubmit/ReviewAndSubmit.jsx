@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EditMultipleImageModal from '../../Modal/EditMultipleImageModal/EditMultipleImageModal';
 import EditImageModal from '../../Modal/EditImageModal/EditImageModal';
 import Camera from 'react-html5-camera-photo';
-import { addVinReviewImg } from '../../../redux/cars_images/cars_images_slice';
+import { addVinReviewImg } from '../../../redux/carImages';
 import { screenList } from '../../../helpers/helpers';
 
 const ReviewAndSubmit = ({ pDentsInfoList, pReviewAndSubmitHandler, pVinOrOdoNumberHandler, pIsAdminView = false }) => {

@@ -47,7 +47,7 @@ import PassengerRoofRail from '../../components/StepperChilds/DriverStep/Drivers
 import DashboardVin from '../../components/StepperChilds/VinStep/Vin/Vin';
 import DoorJamVIN from '../../components/StepperChilds/VinStep/VinDriverDoor/VinDriverDoor';
 import DriverRoofRail from '../../components/StepperChilds/DriverStep/DriversCorner/DriverRoofRail/DriverRoofRail';
-import { UpdateCapturedImage, saveCapturedImage } from '../../redux/cars_images/cars_images_slice';
+import { UpdateCapturedImage, saveCapturedImage } from '../../redux/carImages';
 import axiosWrapper from '../../utils/api';
 
 const MainStepper = () => {
@@ -396,7 +396,7 @@ const MainStepper = () => {
 
                         <div className="for-step-img">
                             <div className="stepper-img">
-                                <img src={renderStepImagesComponent()} alt={`Step`} />
+                                <img src={renderStepImagesComponent()} alt={'Step'} />
                             </div>
 
                             <div className="id-number">
@@ -407,7 +407,9 @@ const MainStepper = () => {
                     <div className="steps-component">{renderStepComponent()}</div>
 
                     <div className="end-button mt-5 mb-3">
-                        <button className="lato-regular without-background mt-3" type="button"
+                        <button
+                            className="lato-regular without-background mt-3"
+                            type="button"
                             style={{
                                 backgroundColor: 'transparent',
                                 color: '#FF8C00', // Tertiary color for Back button
@@ -416,7 +418,8 @@ const MainStepper = () => {
                                 borderRadius: '36px',
                                 fontSize: '16px'
                             }}
-                            onClick={handleBack}>
+                            onClick={handleBack}
+                        >
                             Back
                         </button>
 
@@ -431,14 +434,14 @@ const MainStepper = () => {
 
                         <>
                             {stepsComponents[currentStep - 1]?.children &&
-                                stepsComponents[currentStep - 1]?.children[currentSubStep - 1]?.takePicture ? (
+                            stepsComponents[currentStep - 1]?.children[currentSubStep - 1]?.takePicture ? (
                                 <button className="lato-regular with-background mt-3" onClick={openCamera}>
-                                    Take Pic
-                                </button>
+                                        Take Pic
+                                    </button>
                             ) : !stepsComponents[currentStep - 1]?.children[currentSubStep - 1]?.submitButton ? (
                                 <button className="lato-regular with-background mt-3" type="button" onClick={nextStep}>
-                                    Next
-                                </button>
+                                        Next
+                                    </button>
                             ) : null}
                         </>
                     </div>

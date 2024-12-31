@@ -11,7 +11,7 @@ import Loading from '../Loading/Loading';
 import { toast } from 'react-toastify';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import copy from '@icons/copy.svg';
-import { setActiveTab } from '../../redux/theme/theme_slice';
+import { setActiveTab } from '../../redux/theme/themeSlice';
 
 const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loading, afterDelete, activeKey }) => {
     const navigate = useNavigate();
@@ -75,33 +75,33 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
         {
             name: 'Claim Number',
             selector: (row) => row.claim,
-            sortable: true,
+            sortable: true
         },
         {
             name: 'Insurance',
             selector: (row) => row.insurance,
-            sortable: true,
+            sortable: true
         },
         {
             name: 'Vehicle',
             selector: (row) => row.vehicle,
-            sortable: true,
+            sortable: true
         },
         {
             name: 'Owner',
             selector: (row) => row.vehicleOwner,
-            sortable: true,
+            sortable: true
         },
         {
             name: 'Status',
             selector: (row) => row.status,
-            sortable: true,
+            sortable: true
         },
         {
             name: 'Created On',
             selector: (row) => row.createdOn,
-            sortable: true,
-        },
+            sortable: true
+        }
     ];
 
     const formattedData = tableData?.map((item) => ({
@@ -111,7 +111,7 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
         vehicle: `${item?.vehicle?.make || ''}${item?.vehicle?.make && item?.vehicle?.model ? ', ' : ''}${item?.vehicle?.model || ''}`,
         vehicleOwner: item?.vehicle?.ownerName || '',
         createdOn: format(new Date(item?.createdAt), 'MM/dd/yyyy'),
-        status: item?.status,
+        status: item?.status
     }));
 
     const customStyles = {
@@ -123,8 +123,8 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
                 fontSize: '14px',
                 minHeight: '54px !important',
                 cursor: 'pointer',
-                border: 'none !important',
-            },
+                border: 'none !important'
+            }
         },
         headCells: {
             style: {
@@ -134,8 +134,8 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
                 fontFamily: 'Lato, sans-serif', // Fixed typo here
                 fontSize: '18px',
                 border: 'none !important',
-                minHeight: '54px !important',
-            },
+                minHeight: '54px !important'
+            }
         },
         cells: {
             style: {
@@ -143,9 +143,9 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
                 background: 'transparent',
                 border: 'none !important',
                 cursor: 'pointer',
-                marginTop: '10px',
-            },
-        },
+                marginTop: '10px'
+            }
+        }
     };
 
     const handleChange = ({ selectedRows }) => {

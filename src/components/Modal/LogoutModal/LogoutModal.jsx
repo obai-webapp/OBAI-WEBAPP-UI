@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import byePic from '@images/bye-pic.png';
 import './LogoutModal.scss';
 import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../../redux/auth/auth_slice';
+import { logoutUser } from '../../../redux/auth/authSlice';
 
 const LogoutModal = ({ showLogoutModal, closeLogoutModal }) => {
     const navigate = useNavigate();

@@ -5,7 +5,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import Camera from 'react-html5-camera-photo';
 import { Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { UpdateCapturedImage, addAnotherImage } from '../../../../redux/cars_images/cars_images_slice';
+import { UpdateCapturedImage, addAnotherImage } from '../../../../redux/carImages';
 import EditMultipleImageModal from '../../../Modal/EditMultipleImageModal/EditMultipleImageModal';
 
 const OdometerQualityCheck = (props) => {

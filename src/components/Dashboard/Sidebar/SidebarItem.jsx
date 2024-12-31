@@ -1,5 +1,5 @@
 import React from 'react';
-import { collapseSidebar } from '@redux/theme/theme_slice.js';
+import { collapseSidebar } from '@redux/theme/themeSlice';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 

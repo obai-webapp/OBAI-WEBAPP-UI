@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ThemeState } from '../../types/redux';
 
-const initialState = {
+const initialState: ThemeState = {
     collapsed: false,
     autoCollapsed: false,
     activeTab: ''
@@ -13,13 +14,13 @@ const themeSlice = createSlice({
         toggleSidebar: (state) => {
             state.collapsed = !state.collapsed;
         },
-        collapseSidebar: (state, action) => {
+        collapseSidebar: (state, action: PayloadAction<boolean>) => {
             state.collapsed = action.payload;
         },
-        toggleAutoCollapse: (state, action) => {
+        toggleAutoCollapse: (state, action: PayloadAction<boolean>) => {
             state.autoCollapsed = action.payload;
         },
-        setActiveTab: (state, action) => {
+        setActiveTab: (state, action: PayloadAction<string>) => {
             state.activeTab = action.payload;
         }
     }

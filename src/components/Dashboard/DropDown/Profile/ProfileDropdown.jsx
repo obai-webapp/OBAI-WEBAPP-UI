@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import './profiledropdown.scss';
 import userImg from '@images/user-img.jpg';
-import { logoutUser } from '../../../../redux/auth/auth_slice';
+import { logoutUser } from '../../../../redux/auth/authSlice';
 import { useDispatch } from 'react-redux';
 
 const ProfileDropdown = () => {

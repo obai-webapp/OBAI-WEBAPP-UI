@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet';
 import './auth.scss';
 import { toast } from 'react-toastify';
 import axiosWrapper from '../../utils/api';
-import { addIdForOtpUser } from '../../redux/auth/auth_slice';
+import { addIdForOtpUser } from '../../redux/auth/authSlice';
 
 const UpdatePassword = () => {
     const navigate = useNavigate();

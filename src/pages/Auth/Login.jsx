@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 import { toast } from 'react-toastify';
 import './auth.scss';
-import { loginUser } from '../../redux/auth/auth_actions';
+import { loginUser } from '../../redux/auth/authActions';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -90,7 +90,11 @@ const Login = () => {
                                                     </Link>
                                                 </div>
                                                 <div className="login-btn">
-                                                    <Button className="my-3 w-100" type="submit" disabled={isSubmitting}>
+                                                    <Button
+                                                        className="my-3 w-100"
+                                                        type="submit"
+                                                        disabled={isSubmitting}
+                                                    >
                                                         {isSubmitting ? (
                                                             <Spinner animation="border" size="sm" />
                                                         ) : (

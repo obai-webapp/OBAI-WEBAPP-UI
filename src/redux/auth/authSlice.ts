@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from './auth_actions';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AuthState } from '../../types/redux';
+import { loginUser } from './authActions';
 
-const initialState = {
+const initialState: AuthState = {
     loading: false,
     userInfo: null,
     userToken: null,
@@ -12,7 +13,7 @@ const initialState = {
     otpForUser: null
 };
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
@@ -24,51 +25,45 @@ const authSlice = createSlice({
             state.error = null;
             state.isLoggedIn = false;
 
-            // Clear localStorage on logout
             localStorage.removeItem('userToken');
             localStorage.removeItem('userInfo');
         },
-        loginWithoutAPI: (state, { payload }) => {
+        loginWithoutAPI: (state, action: PayloadAction<{ email: string }>) => {
             state.isLoggedIn = true;
-            state.userInfo = { email: payload.email };
+            state.userInfo = { email: action.payload.email };
         },
-        addIdForOtpUser: (state, { payload }) => {
-            state.otpForUser = payload.data;
+        addIdForOtpUser: (state, action: PayloadAction<{ data: any }>) => {
+            state.otpForUser = action.payload.data;
         }
     },
-    extraReducers(builder) {
+    extraReducers: (builder) => {
         builder
             .addCase(loginUser.pending, (state) => {
+                state.loading = true;
                 state.userInfo = null;
                 state.userToken = null;
-                state.loading = true;
                 state.error = null;
                 state.isLoggedIn = false;
             })
-            .addCase(loginUser.fulfilled, (state, { payload }) => {
-                state.userInfo = payload.user;
-                state.userToken = payload.token;
+            .addCase(loginUser.fulfilled, (state, action) => {
                 state.loading = false;
+                state.userInfo = action.payload.user;
+                state.userToken = action.payload.token;
                 state.error = null;
                 state.isLoggedIn = true;
 
-                // Store the token and user info in localStorage
-                localStorage.setItem('userToken', payload.token);
-                localStorage.setItem('userInfo', JSON.stringify(payload.user));
+                localStorage.setItem('userToken', action.payload.token);
+                localStorage.setItem('userInfo', JSON.stringify(action.payload.user));
             })
-            .addCase(loginUser.rejected, (state, { payload }) => {
+            .addCase(loginUser.rejected, (state, action) => {
+                state.loading = false;
                 state.userInfo = null;
                 state.userToken = null;
-                state.loading = false;
-                state.error = payload;
+                state.error = 'Unknown error';
                 state.isLoggedIn = false;
 
-                // Remove any existing data from localStorage on failed login
                 localStorage.removeItem('userToken');
                 localStorage.removeItem('userInfo');
             });
     }
 });
-
-export const { logoutUser, loginWithoutAPI, addIdForOtpUser } = authSlice.actions;
-export default authSlice.reducer;

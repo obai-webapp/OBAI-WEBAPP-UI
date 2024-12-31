@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Topbar from '../Topbar/Topbar';
 import './mainpanel.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { collapseSidebar, toggleAutoCollapse } from '@redux/theme/theme_slice.js';
+import { collapseSidebar, toggleAutoCollapse } from '@redux/theme/themeSlice';
 
 const MainPanel = (props) => {
     const dispatch = useDispatch();

@@ -9,7 +9,7 @@ import { useSearchParams } from 'react-router-dom';
 import EditImageModal from '../../../Modal/EditImageModal/EditImageModal';
 import backImg from '@icons/back.svg';
 import Camera from 'react-html5-camera-photo';
-import { addVinReviewImg, updateOnlyCapturedImages } from '../../../../redux/cars_images/cars_images_slice';
+import { addVinReviewImg, updateOnlyCapturedImages } from '../../../../redux/carImages';
 import { base64ToBlob } from '../../../../helpers/helpers';
 import axiosWrapper from '../../../../utils/api';
 

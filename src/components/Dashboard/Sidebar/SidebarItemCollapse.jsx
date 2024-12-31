@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-import { collapseSidebar } from '@redux/theme/theme_slice';
+import { collapseSidebar } from '@redux/theme/themeSlice';
 
 const SidebarItemCollapse = ({ item, selectedItemId, handleSideBarClick }) => {
     const dispatch = useDispatch();

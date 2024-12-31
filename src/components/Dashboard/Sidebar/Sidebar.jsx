@@ -8,10 +8,10 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import SidebarItem from './SidebarItem';
 import SidebarItemCollapse from './SidebarItemCollapse';
-import { collapseSidebar } from '@redux/theme/theme_slice.js';
+import { collapseSidebar } from '@redux/theme/themeSlice';
 import ConfirmationBox from '../../ConfirmationBox/ConfirmationBox';
-import { logoutUser } from '@redux/auth/auth_slice';
-import { changeLink } from '@redux/sidebar/sidebarSlice';
+import { logoutUser } from '@/src/redux/auth/authSlice';
+import { changeLink } from '@/src/redux/sidebar';
 // import all static icons
 import sideBarItems from './sidebarData';
 

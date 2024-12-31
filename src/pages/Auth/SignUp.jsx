@@ -7,7 +7,7 @@ import logoImg from '@images/logo.png';
 import Input from '../../components/Input/Input';
 import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
-import { registerUser } from '@redux/auth/auth_actions';
+import { registerUser } from '@/src/redux/auth/authActions';
 import { Helmet } from 'react-helmet';
 import './auth.scss';
 
