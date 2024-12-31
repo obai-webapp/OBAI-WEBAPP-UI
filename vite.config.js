@@ -15,7 +15,8 @@ export default defineConfig({
             '@pages': path.resolve('./src/pages'),
             '@layout': path.resolve('./src/layout'),
             '@redux': path.resolve('./src/redux'),
-            '@types': path.resolve('./src/types')
+            '@types': path.resolve('./src/types'),
+            '@': path.resolve('./src')
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx']
     },

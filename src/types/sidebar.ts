@@ -1,14 +1,14 @@
-export interface SidebarItem {
+export interface SidebarItemType {
     id: number;
     name: string;
     iconLight: string;
     iconDark: string;
     linkTo?: string;
-    child?: SidebarItem[];
+    child?: SidebarItemType[];
 }
 
 export interface SidebarItemProps {
-    item: SidebarItem;
+    item: SidebarItemType;
     selectedItemId: number;
-    handleSideBarClick: (item: SidebarItem) => void;
+    handleSideBarClick: (item: SidebarItemType) => void;
 }

@@ -6,8 +6,9 @@ import productLight from '@icons/product-light.svg';
 import productDark from '@icons/product-dark.svg';
 import logoutLight from '@icons/logout-light.svg';
 import logoutDark from '@icons/logout-dark.svg';
+import { SidebarItemType } from '@/src/types';
 
-const sideBarItems: SidebarItem[] = [
+const sideBarItems: SidebarItemType[] = [
     {
         id: 1,
         name: 'Home',

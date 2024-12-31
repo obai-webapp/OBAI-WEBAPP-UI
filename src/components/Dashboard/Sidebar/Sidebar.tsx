@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Nav } from 'react-bootstrap';
-import './sidebar.scss';
 import { useNavigate } from 'react-router-dom';
 import logoImg from '@images/ropstam.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,9 +10,12 @@ import SidebarItemCollapse from './SidebarItemCollapse';
 import { collapseSidebar } from '@redux/theme/themeSlice';
 import ConfirmationBox from '../../ConfirmationBox/ConfirmationBox';
 import { logoutUser } from '@redux/auth/authSlice';
-import changeLink from '@/src/redux/sidebar';
+import changeLink from '@redux/sidebar';
 import sideBarItems from './sidebarData';
 import { RootState } from '@/src/redux/store';
+import type { SidebarItemType } from '@/src/types';
+
+import './sidebar.scss';
 
 const Sidebar = () => {
     const dispatch = useDispatch();
@@ -23,7 +25,7 @@ const Sidebar = () => {
     const navigate = useNavigate();
 
     const selectActiveItem = () => {
-        const findActiveItem = (items) => {
+        const findActiveItem = (items: SidebarItemType[]) => {
             for (const item of items) {
                 if (window.location.pathname === item.linkTo) {
                     return item;
