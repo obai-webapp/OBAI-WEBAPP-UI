@@ -67,3 +67,6 @@ export const authSlice = createSlice({
             });
     }
 });
+
+export const { logoutUser, loginWithoutAPI, addIdForOtpUser } = authSlice.actions;
+export default authSlice.reducer;

@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Col, Modal, Row } from 'react-bootstrap';
-import byePic from '@icons/archive.svg';
+// import byePic from '@icons/archive.svg';
+import byePic from '../../../assets/icons/archive.svg';
 import './ArchiveModal.scss';
 
 interface ArchiveModalProps {

@@ -7,7 +7,7 @@ import productDark from '@icons/product-dark.svg';
 import logoutLight from '@icons/logout-light.svg';
 import logoutDark from '@icons/logout-dark.svg';
 
-const sideBarItems = [
+const sideBarItems: SidebarItem[] = [
     {
         id: 1,
         name: 'Home',

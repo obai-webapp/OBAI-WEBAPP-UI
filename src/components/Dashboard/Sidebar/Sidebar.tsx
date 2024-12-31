@@ -11,16 +11,14 @@ import SidebarItemCollapse from './SidebarItemCollapse';
 import { collapseSidebar } from '@redux/theme/themeSlice';
 import ConfirmationBox from '../../ConfirmationBox/ConfirmationBox';
 import { logoutUser } from '@redux/auth/authSlice';
-import { changeLink } from '@/src/redux/sidebar';
-// import all static icons
+import changeLink from '@/src/redux/sidebar';
 import sideBarItems from './sidebarData';
+import { RootState } from '@/src/redux/store';
 
 const Sidebar = () => {
     const dispatch = useDispatch();
-    const collapsed = useSelector((state) => state.theme.collapsed);
-    const autoCollapsed = useSelector((state) => state.theme.autoCollapsed);
+    const { theme: collapsed, theme: autoCollapsed, activeSidebarItem } = useSelector((state: RootState) => state);
     const [modalShow, setModalShow] = useState(false);
-    const { activeSidebarItem } = useSelector((state) => state.activeSidebarItem);
 
     const navigate = useNavigate();
 
