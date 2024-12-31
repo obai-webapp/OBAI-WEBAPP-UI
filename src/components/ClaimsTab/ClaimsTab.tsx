@@ -1,54 +1,91 @@
 import React, { useEffect, useState } from 'react';
-import DataTable from 'react-data-table-component';
+import DataTable, { TableColumn } from 'react-data-table-component';
 import { useNavigate } from 'react-router-dom';
 import RadioButton from '../../components/RadioButton/RadioButton';
 import './ClaimsTab.scss';
-import deleteIcon from '@icons/del.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import axiosWrapper from '../../utils/api';
 import { format } from 'date-fns';
 import Loading from '../Loading/Loading';
 import { toast } from 'react-toastify';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
-import copy from '@icons/copy.svg';
 import { setActiveTab } from '../../redux/theme/themeSlice';
 
-const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loading, afterDelete, activeKey }) => {
+// import deleteIcon from '@icons/del.svg';
+// import copy from '@icons/copy.svg';
+
+interface ClaimsTabProps {
+    setSelectedRows: (rows: string[]) => void;
+    setTableData: (data: any[]) => void;
+    tableData: ClaimData[];
+    fetchData: () => void;
+    loading: boolean;
+    afterDelete: (id: string) => void;
+    activeKey: string;
+}
+
+interface ClaimData {
+    _id: string;
+    claimNumber: string;
+    company: string;
+    vehicle: {
+        make: string;
+        model: string;
+        ownerName: string;
+    };
+    createdAt: string;
+    status: string;
+}
+
+interface FormattedClaimData {
+    id: string;
+    claim: string;
+    insurance: string;
+    vehicle: string;
+    vehicleOwner: string;
+    createdOn: string;
+    status: string;
+}
+
+const ClaimsTab: React.FC<ClaimsTabProps> = ({
+    setSelectedRows,
+    tableData,
+    fetchData,
+    loading,
+    afterDelete,
+    activeKey
+}) => {
     const navigate = useNavigate();
-    const { userToken } = useSelector((state) => state?.auth);
     const dispatch = useDispatch();
+    const userToken = useSelector((state: any) => state?.auth?.userToken);
+
     const [deleteModal, setDeleteModal] = useState(false);
-    const [claimToDelete, setClaimToDelete] = useState(null);
+    const [claimToDelete, setClaimToDelete] = useState<string | null>(null);
 
     useEffect(() => {
-        // Fetch data based on activeKey (claims or archived)
         if (activeKey === 'claims' || activeKey === 'archived') {
-            fetchData(); // Always call the parent fetch function which will handle the filter logic
+            fetchData();
         }
-    }, [activeKey]);
+    }, [activeKey, fetchData]);
 
     const closeDeleteModal = () => setDeleteModal(false);
 
-    const showDeleteModal = (claimId) => {
+    const showDeleteModal = (claimId: string) => {
         setClaimToDelete(claimId);
         setDeleteModal(true);
     };
 
-    const handleCopyClick = (rowData) => () => {
+    const handleCopyClick = (rowData: FormattedClaimData) => {
         navigator.clipboard
-            .writeText(`${import.meta.env.VITE_UI_URL}/${rowData?.id}`)
-            .then(() => {
-                toast.success('Link copied to clipboard');
-            })
-            .catch((err) => {
-                console.error('Failed to copy: ', err);
-            });
+            .writeText(`${import.meta.env.VITE_UI_URL}/${rowData.id}`)
+            .then(() => toast.success('Link copied to clipboard'))
+            .catch((err) => console.error('Failed to copy:', err));
     };
 
-    const getClaimById = async (id) => {
+    const getClaimById = async (id: string) => {
         try {
             const apiUrl = `${import.meta.env.VITE_API_URL}/api/claim/${id}`;
-            const { data } = await axiosWrapper('get', apiUrl, null, userToken);
+            await axiosWrapper('get', apiUrl, null, userToken);
             dispatch(setActiveTab(activeKey));
             navigate(`/view-claims/${id}`);
         } catch (error) {
@@ -57,7 +94,7 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
         }
     };
 
-    const deleteClaim = async (id) => {
+    const deleteClaim = async (id: string) => {
         try {
             const apiUrl = `${import.meta.env.VITE_API_URL}/api/claim/${id}`;
             await axiosWrapper('delete', apiUrl, null, userToken);
@@ -66,12 +103,12 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
             toast.success('Claim deleted successfully');
             afterDelete(id);
         } catch (error) {
+            toast.error('Error deleting claim');
             console.error('Error deleting claim:', error);
         }
     };
 
-    const columns = [
-        // Your existing columns logic here
+    const columns: TableColumn<FormattedClaimData>[] = [
         {
             name: 'Claim Number',
             selector: (row) => row.claim,
@@ -104,14 +141,16 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
         }
     ];
 
-    const formattedData = tableData?.map((item) => ({
-        id: item?._id,
-        claim: item?.claimNumber || '',
-        insurance: item?.company || '',
-        vehicle: `${item?.vehicle?.make || ''}${item?.vehicle?.make && item?.vehicle?.model ? ', ' : ''}${item?.vehicle?.model || ''}`,
-        vehicleOwner: item?.vehicle?.ownerName || '',
-        createdOn: format(new Date(item?.createdAt), 'MM/dd/yyyy'),
-        status: item?.status
+    const formattedData: FormattedClaimData[] = tableData.map((item) => ({
+        id: item._id,
+        claim: item.claimNumber || '',
+        insurance: item.company || '',
+        vehicle: `${item.vehicle?.make || ''}${item.vehicle?.make && item.vehicle?.model ? ', ' : ''}${
+            item.vehicle?.model || ''
+        }`,
+        vehicleOwner: item.vehicle?.ownerName || '',
+        createdOn: format(new Date(item.createdAt), 'MM/dd/yyyy'),
+        status: item.status
     }));
 
     const customStyles = {
@@ -131,10 +170,9 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
                 color: '#F25C22',
                 fontWeight: '700',
                 background: 'transparent',
-                fontFamily: 'Lato, sans-serif', // Fixed typo here
+                fontFamily: 'Lato, sans-serif',
                 fontSize: '18px',
-                border: 'none !important',
-                minHeight: '54px !important'
+                border: 'none !important'
             }
         },
         cells: {
@@ -142,59 +180,38 @@ const ClaimsTab = ({ setSelectedRows, setTableData, tableData, fetchData, loadin
                 color: '#101C85',
                 background: 'transparent',
                 border: 'none !important',
-                cursor: 'pointer',
-                marginTop: '10px'
+                cursor: 'pointer'
             }
         }
     };
 
-    const handleChange = ({ selectedRows }) => {
+    const handleChange = ({ selectedRows }: { selectedRows: FormattedClaimData[] }) => {
         setSelectedRows(selectedRows.map((row) => row.id));
-    };
-
-    const sortHandler = (rows, selector, direction) => {
-        const newSortList = rows.sort((a, b) => {
-            const aField = selector(a).props.children.toLowerCase();
-            const bField = selector(b).props.children.toLowerCase();
-
-            let comparison = 0;
-
-            if (aField > bField) {
-                comparison = 1;
-            } else if (aField < bField) {
-                comparison = -1;
-            }
-
-            return direction === 'desc' ? comparison * -1 : comparison;
-        });
-
-        return newSortList;
     };
 
     return (
         <>
             {loading ? (
                 <Loading />
-            ) : tableData?.length <= 0 ? (
+            ) : tableData.length === 0 ? (
                 <div className="d-flex justify-content-center align-items-center" style={{ height: '50vh' }}>
-                    <p style={{ color: '#F25C22', fontWeight: '300', marginBlock: 0 }}>No data found</p>
+                    <p style={{ color: '#F25C22', fontWeight: 300, margin: 0 }}>No data found</p>
                 </div>
             ) : (
                 <div className="mt-3 data-table-custom">
                     <DataTable
                         columns={columns}
                         data={formattedData}
-                        dense={true}
-                        responsive={true}
-                        pagination={true}
+                        dense
+                        responsive
+                        pagination
                         paginationPerPage={10}
                         paginationRowsPerPageOptions={[10, 15, 20, 25, 30]}
                         customStyles={customStyles}
                         theme="solarized"
-                        onRowClicked={(row) => getClaimById(row?.id)}
-                        selectableRowsComponent={RadioButton}
+                        onRowClicked={(row) => getClaimById(row.id)}
+                        selectableRowsComponent={React.createElement(RadioButton)}
                         onSelectedRowsChange={handleChange}
-                        sortFunction={sortHandler}
                         selectableRows={activeKey === 'claims'}
                     />
                 </div>

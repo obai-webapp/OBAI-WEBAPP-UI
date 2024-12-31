@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const isDevelopment = import.meta.env.MODE !== 'production';
 const middleware = isDevelopment ? [createLogger()] : [];
 
 export const store = configureStore({
@@ -37,8 +37,8 @@ export const store = configureStore({
     devTools: isDevelopment
 });
 
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
-export type AppStore = typeof store;
 export const persistor = persistStore(store);
 
 export default store;

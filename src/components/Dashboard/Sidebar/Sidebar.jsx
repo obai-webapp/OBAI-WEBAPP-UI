@@ -10,7 +10,7 @@ import SidebarItem from './SidebarItem';
 import SidebarItemCollapse from './SidebarItemCollapse';
 import { collapseSidebar } from '@redux/theme/themeSlice';
 import ConfirmationBox from '../../ConfirmationBox/ConfirmationBox';
-import { logoutUser } from '@/src/redux/auth/authSlice';
+import { logoutUser } from '@redux/auth/authSlice';
 import { changeLink } from '@/src/redux/sidebar';
 // import all static icons
 import sideBarItems from './sidebarData';

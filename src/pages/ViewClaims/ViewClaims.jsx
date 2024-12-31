@@ -4,7 +4,7 @@ import { Accordion, Col, Container, Form, Row } from 'react-bootstrap';
 import './ViewClaims.scss';
 import edit from '@icons/claim/edit.png';
 import tick from '@icons/tick.svg';
-import ArchiveModal from '../../components/Modal/ArchiveModal/ArchiveModal';
+import ArchiveModal from '../../components/Modal/ArchiveModal';
 import { useLocation } from 'react-router-dom';
 import axiosWrapper from '../../utils/api';
 import { toast } from 'react-toastify';

@@ -17,7 +17,8 @@ export default defineConfig({
             '@layout': path.resolve('./src/layout'),
             '@redux': path.resolve('./src/redux'),
             '@types': path.resolve('./src/types')
-        }
+        },
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     css: {
         preprocessorOptions: {

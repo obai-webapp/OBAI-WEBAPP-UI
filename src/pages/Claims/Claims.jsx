@@ -3,7 +3,7 @@ import ClaimsHeader from '../../components/ClaimsHeader/ClaimsHeader';
 import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import './Claims.scss';
 import ClaimsTab from '../../components/ClaimsTab/ClaimsTab';
-import ArchiveModal from '../../components/Modal/ArchiveModal/ArchiveModal';
+import ArchiveModal from '../../components/Modal/ArchiveModal';
 import radio from '@icons/white-radio.svg';
 import axiosWrapper from '../../utils/api';
 import { useSelector } from 'react-redux';
@@ -47,7 +47,7 @@ const Claims = () => {
     useEffect(() => {
         // Fetch data when the "key" changes
         if (userToken) {
-            fetchData();  // Only fetch data if the userToken is available
+            fetchData(); // Only fetch data if the userToken is available
         }
     }, [key, userToken]); // Only re-fetch when `key` or `userToken` changes
 
@@ -139,7 +139,7 @@ const Claims = () => {
             <Tabs
                 id="controlled-tab-example"
                 activeKey={key}
-                onSelect={(k) => setKey(k)}  // Properly update the "key" when switching tabs
+                onSelect={(k) => setKey(k)} // Properly update the "key" when switching tabs
                 className="mb-3"
             >
                 <Tab eventKey="claims" title="Claims">
