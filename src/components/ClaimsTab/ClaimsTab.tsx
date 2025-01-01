@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import DataTable, { TableColumn } from 'react-data-table-component';
+import DataTable, { TableColumn, TableProps } from 'react-data-table-component';
 import { useNavigate } from 'react-router-dom';
 import RadioButton from '../../components/RadioButton/RadioButton';
 import './ClaimsTab.scss';
@@ -210,7 +210,7 @@ const ClaimsTab: React.FC<ClaimsTabProps> = ({
                         customStyles={customStyles}
                         theme="solarized"
                         onRowClicked={(row) => getClaimById(row.id)}
-                        selectableRowsComponent={React.createElement(RadioButton)}
+                        selectableRowsComponent={RadioButton as unknown as TableProps<any>['selectableRowsComponent']}
                         onSelectedRowsChange={handleChange}
                         selectableRows={activeKey === 'claims'}
                     />

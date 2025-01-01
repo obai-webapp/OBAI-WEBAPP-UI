@@ -24,16 +24,13 @@ export const loginUser = createAsyncThunk<LoginResponse, LoginPayload>(
     'auth/login',
     async ({ email, password }, { rejectWithValue }) => {
         try {
-            const { data } = await axiosWrapper('post', `${API_URL}/api/admin/login`, {
+            const response = await axiosWrapper<LoginResponse>('post', `${API_URL}/api/admin/login`, {
                 email,
                 password
             });
-            return data;
-        } catch (error: unknown) {
-            if (error instanceof Error) {
-                return rejectWithValue(error.message);
-            }
-            return rejectWithValue('An unknown error occurred');
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error as string);
         }
     }
 );
@@ -42,17 +39,14 @@ export const registerUser = createAsyncThunk<LoginResponse, RegisterPayload>(
     'auth/register',
     async ({ email, password, name }, { rejectWithValue }) => {
         try {
-            const { data } = await axiosWrapper('post', `${API_URL}/api/user/register`, {
+            const response = await axiosWrapper<LoginResponse>('post', `${API_URL}/api/user/register`, {
                 email,
                 password,
                 name
             });
-            return data;
-        } catch (error: unknown) {
-            if (error instanceof Error) {
-                return rejectWithValue(error.message);
-            }
-            return rejectWithValue('An unknown error occurred');
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error as string);
         }
     }
 );

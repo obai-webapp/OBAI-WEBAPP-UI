@@ -1,22 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons'; // Importing the search icon
-import './ClaimsHeader.scss';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import './ClaimsHeader.scss';
 
-const ClaimsHeader = ({ searchHandler, search, resetData }) => {
+interface ClaimsHeaderProps {
+    searchHandler: (value: string) => void;
+    search: string;
+    resetData: () => void;
+    closeArchiveModal: () => void;
+    showArchiveModal: boolean;
+    openArchiveModal: () => void;
+}
+
+const ClaimsHeader: React.FC<ClaimsHeaderProps> = ({ searchHandler, search, resetData }) => {
     const [isSearchVisible, setSearchVisible] = useState(false);
-    const searchRef = useRef(null);
-
+    const searchRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
 
     const toggleSearch = () => {
         setSearchVisible(!isSearchVisible);
     };
 
-    const handleClickOutside = (event) => {
-        if (searchRef.current && !searchRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+        if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
             setSearchVisible(false);
         }
     };
@@ -29,8 +37,9 @@ const ClaimsHeader = ({ searchHandler, search, resetData }) => {
     }, []);
 
     useEffect(() => {
-        if (isSearchVisible) {
-            searchRef.current.querySelector('input').focus();
+        if (isSearchVisible && searchRef.current) {
+            const input = searchRef.current.querySelector('input');
+            input?.focus();
         }
     }, [isSearchVisible]);
 
@@ -48,12 +57,12 @@ const ClaimsHeader = ({ searchHandler, search, resetData }) => {
                             onClick={toggleSearch}
                             style={{ display: isSearchVisible ? 'none' : 'block' }}
                         >
-                            <FontAwesomeIcon icon={faSearch} size="lg" color="#FF8C00" /> {/* Updated to new brand color */}
+                            <FontAwesomeIcon icon={faSearch} size="lg" color="#FF8C00" />
                         </div>
                         {isSearchVisible && (
                             <div className="search-field" ref={searchRef}>
                                 <div className="search-icon2" onClick={toggleSearch}>
-                                    <FontAwesomeIcon icon={faSearch} size="lg" color="#FF8C00" /> {/* Updated to new brand color */}
+                                    <FontAwesomeIcon icon={faSearch} size="lg" color="#FF8C00" />
                                 </div>
                                 <div className="w-100">
                                     <input

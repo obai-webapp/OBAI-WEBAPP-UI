@@ -1,4 +1,4 @@
-import React, { ForwardRefRenderFunction } from 'react';
+import React from 'react';
 import { Form, FormCheckProps } from 'react-bootstrap';
 import './RadioButton.scss';
 
@@ -7,10 +7,8 @@ interface RadioButtonProps extends FormCheckProps {
     color?: string;
 }
 
-const RadioButton: ForwardRefRenderFunction<HTMLInputElement, RadioButtonProps> = (
-    { onClick, color = '#f25c22', ...rest },
-    ref
-) => {
+const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>((props, ref) => {
+    const { onClick, color = '#f25c22', ...rest } = props;
     return (
         <div className="radio-button">
             <Form.Check
@@ -19,12 +17,10 @@ const RadioButton: ForwardRefRenderFunction<HTMLInputElement, RadioButtonProps> 
                 ref={ref}
                 onClick={onClick}
                 {...rest}
-                style={{
-                    accentColor: color // Apply custom color to the radio button
-                }}
+                style={{ accentColor: color }}
             />
         </div>
     );
-};
+});
 
-export default React.forwardRef(RadioButton);
+export default RadioButton;
